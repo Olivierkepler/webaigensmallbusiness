@@ -8,13 +8,14 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <header className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-[120px] pb-16 sm:pb-20 lg:pb-[90px]">
+    <header className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-[100px] pb-16 sm:pb-20 lg:pb-[90px]">
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_460px] xl:grid-cols-[minmax(0,1fr)_520px] items-center gap-12 lg:gap-16">
           <div className="text-center lg:text-left">
-            <h1 className="mx-auto lg:mx-0 text-[clamp(36px,8vw,64px)] font-normal tracking-[-0.055em] leading-[1.02] max-w-[12ch]">
+            <h1 className="mx-auto lg:mx-0 text-[clamp(32px,6vw,54px)] font-normal tracking-[-0.055em] leading-[1.06] max-w-[12ch]">
               {t.hero.title}
             </h1>
+       
 
             <p className="mx-auto lg:mx-0 text-muted text-[clamp(16px,2.4vw,20px)] max-w-[640px] mt-6 sm:mt-7 leading-relaxed">
               {t.hero.description}{" "}
