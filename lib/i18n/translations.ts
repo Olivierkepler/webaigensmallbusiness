@@ -156,7 +156,7 @@ const en = {
   workItems: [
     {
       co: "Saskia Cleaning",
-      desc: "KAYAK-style estimator, live pricing, and an editorial design system serving MA & RI.",
+      desc: "Live pricing, and an editorial design system serving MA & RI.",
     },
     {
       co: "WoundScanner",

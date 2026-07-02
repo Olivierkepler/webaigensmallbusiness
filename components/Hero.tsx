@@ -46,6 +46,13 @@ export default function Hero() {
         >
           {t.hero.cta}
         </a>
+        <a
+          href="#work"
+          className="inline-block mt-10 bg-accent text-[#0a0a0a] font-bold text-[15px] px-8 py-[15px] rounded-full transition hover:-translate-y-0.5"
+        >
+         Get in touch
+        </a>
+
     </div>
 
 
