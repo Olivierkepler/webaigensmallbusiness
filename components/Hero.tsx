@@ -1,5 +1,6 @@
 "use client";
 
+import NodeALogo from "./logo";
 import Reveal from "./Reveal";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
@@ -10,7 +11,11 @@ export default function Hero() {
     <header className="relative pt-[120px] pb-[90px]">
    
       <div className="max-w-[1200px] mx-auto px-6 relative">
-        <h1 className="text-[clamp(32px,4vw,54px)] font-normal tracking-[-0.045em] leading-[1.07] max-w-[15ch]">
+   <div className="flex items-center justify-between">
+    
+
+    <div>
+    <h1 className="text-[clamp(32px,4vw,54px)] font-normal tracking-[-0.045em] leading-[1.07] max-w-[15ch]">
           {t.hero.title}
         </h1>
 
@@ -41,6 +46,18 @@ export default function Hero() {
         >
           {t.hero.cta}
         </a>
+    </div>
+
+
+
+<div>
+  <NodeALogo />
+</div>
+
+
+
+
+   </div>
 
         <Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 rounded-card overflow-hidden mt-20">
@@ -63,6 +80,8 @@ export default function Hero() {
           </div>
         </Reveal>
       </div>
+
+
     </header>
   );
 }
