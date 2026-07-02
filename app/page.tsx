@@ -17,10 +17,12 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <Thesis />
-        <Proof />
         <Method />
+        <Thesis />
         <Work />
+        <Proof />
+       
+       
         <Faq />
       </main>
       <Footer />
