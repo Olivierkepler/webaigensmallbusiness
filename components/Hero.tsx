@@ -8,14 +8,7 @@ export default function Hero() {
 
   return (
     <header className="relative pt-[120px] pb-[90px]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-x-[20%] -top-[40%] h-[120%]"
-        style={{
-          background:
-            "radial-gradient(ellipse at 70% 10%, var(--glow), transparent 55%)",
-        }}
-      />
+   
       <div className="max-w-[1200px] mx-auto px-6 relative">
         <h1 className="text-[clamp(32px,4vw,54px)] font-normal tracking-[-0.045em] leading-[1.07] max-w-[15ch]">
           {t.hero.title}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
+import NavbarSearch from "./NavbarSearch";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 export default function Navbar() {
@@ -36,7 +37,8 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-3">
+        <NavbarSearch />
+        <div className="flex items-center gap-3 shrink-0">
           <LanguageToggle />
           <ThemeToggle />
           <a

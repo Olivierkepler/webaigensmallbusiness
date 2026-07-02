@@ -16,6 +16,19 @@ const en = {
     cta: "Book a Strategy Call",
     logoAlt: "WebAiGen logo",
   },
+  search: {
+    placeholder: "Search site…",
+    noResults: "No results found",
+    open: "Open search",
+    close: "Close search",
+    categories: {
+      section: "Section",
+      service: "Service",
+      industry: "Industry",
+      work: "Work",
+      faq: "FAQ",
+    },
+  },
   announce: {
     text: "WebAiGen × ADAGE — Bringing AI automation education to Greater Boston.",
     link: "Read more",
@@ -259,6 +272,19 @@ const fr: typeof en = {
     cta: "Réserver un appel stratégique",
     logoAlt: "Logo WebAiGen",
   },
+  search: {
+    placeholder: "Rechercher…",
+    noResults: "Aucun résultat",
+    open: "Ouvrir la recherche",
+    close: "Fermer la recherche",
+    categories: {
+      section: "Section",
+      service: "Service",
+      industry: "Secteur",
+      work: "Réalisation",
+      faq: "FAQ",
+    },
+  },
   announce: {
     text: "WebAiGen × ADAGE — Apporter la formation à l'automatisation IA au Grand Boston.",
     link: "En savoir plus",
@@ -501,6 +527,19 @@ const es: typeof en = {
     faq: "FAQ",
     cta: "Reservar llamada estratégica",
     logoAlt: "Logo de WebAiGen",
+  },
+  search: {
+    placeholder: "Buscar…",
+    noResults: "Sin resultados",
+    open: "Abrir búsqueda",
+    close: "Cerrar búsqueda",
+    categories: {
+      section: "Sección",
+      service: "Servicio",
+      industry: "Industria",
+      work: "Proyecto",
+      faq: "FAQ",
+    },
   },
   announce: {
     text: "WebAiGen × ADAGE — Llevando educación en automatización con IA al Gran Boston.",
