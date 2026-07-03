@@ -8,7 +8,7 @@ export default function Marquee() {
   const doubled = [...partners, ...partners];
 
   return (
-    <div className="py-[70px] border-y border-line/10">
+    <div className="py-[70px] ">
       <div className="text-center text-xs tracking-[0.22em] uppercase text-dim font-semibold mb-9">
         {t.marquee.label}
       </div>

@@ -7,8 +7,8 @@ export default function Method() {
   const { t } = useLanguage();
 
   return (
-    <section id="method" className="pb-[110px]">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="method" className="pb-[110px] bg-surface/60">
+      <div className="max-w-[1200px] mx-auto px-6  py-20 rounded-card">
         <div className="text-xs tracking-[0.22em] uppercase text-dim font-semibold mb-[18px]">
           {t.method.eyebrow}
         </div>
