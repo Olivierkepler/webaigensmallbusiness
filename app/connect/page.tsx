@@ -60,7 +60,7 @@ export default function ConnectPage() {
             <div className="grid gap-4 sm:grid-cols-2 max-w-2xl">
               <a
                 href="mailto:webaigen3@gmail.com"
-                className="group rounded-3xl border border-line/10 bg-bg/70 p-5 sm:p-6 backdrop-blur-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-surface"
+                className="group rounded-3xl  bg-bg/70 p-5 sm:p-6 backdrop-blur-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-surface"
               >
                 <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted">
                   <Mail size={15} aria-hidden="true" />
@@ -74,7 +74,7 @@ export default function ConnectPage() {
 
               <a
                 href="tel:+16173808053"
-                className="group rounded-3xl border border-line/10 bg-bg/70 p-5 sm:p-6 backdrop-blur-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-surface"
+                className="group rounded-3xl  bg-bg/70 p-5 sm:p-6 backdrop-blur-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-surface"
               >
                 <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted">
                   <Phone size={15} aria-hidden="true" />
@@ -87,7 +87,7 @@ export default function ConnectPage() {
               </a>
             </div>
 
-            <div className="rounded-[2rem] border border-line/10 bg-bg/75 p-5 sm:p-6 backdrop-blur-xl shadow-sm">
+            <div className="rounded-[2rem] bg-bg/75 p-5 sm:p-6 backdrop-blur-xl shadow-sm">
               <div className="flex flex-col xs:flex-row sm:flex-row items-start sm:items-center gap-5">
                 <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-3xl bg-raised ring-1 ring-line/10">
                   <Image
