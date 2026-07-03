@@ -14,7 +14,8 @@ const config: Config = {
         txt: "rgb(var(--txt) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
         dim: "rgb(var(--dim) / <alpha-value>)",
-        accent: "#d8ff3e",
+        // accent: "#d8ff3e",
+        accent: "#FAAA32",
         "accent-ink": "rgb(var(--accent-ink) / <alpha-value>)",
       },
       borderRadius: {

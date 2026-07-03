@@ -40,15 +40,16 @@ export default function ConnectPage() {
           className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(circle_at_center,black,transparent_82%)] pointer-events-none"
         />
 
-        <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
+        <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 pt-24 sm:pt-28 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
           <div className="max-w-4xl">
             <p className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-muted">
               Connect
             </p>
 
-            <h1 className="mt-5 max-w-[10ch] text-[clamp(48px,11vw,96px)] font-bold leading-[0.9] tracking-[-0.06em]">
+            <h1 className="mt-5 max-w-[10ch] text-[clamp(38px,8vw,68px)] font-normal leading-[0.9] tracking-[-0.06em]">
               Build <span className="text-accent">smart.</span>
             </h1>
+       
 
             <p className="mt-6 max-w-2xl text-[clamp(17px,2.5vw,22px)] leading-relaxed text-muted">
               Tell us what you’re building. We’ll help you shape a sharper web,

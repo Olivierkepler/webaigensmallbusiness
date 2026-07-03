@@ -10,10 +10,10 @@ export default function AnnounceBar() {
   if (!visible) return null;
 
   return (
-    <div className="relative bg-accent text-[#0a0a0a] text-[13px] font-semibold text-center py-2 px-4 flex items-center justify-center">
+    <div className="relative bg-accent text-black text-[13px] font-semibold text-center py-2 px-4 flex items-center justify-center">
       <span>
         {t.announce.text}{" "}
-        <a href="#work" className="border-b border-black/40 ml-1">
+        <a href="#work" className="border-b border-txt/40 ml-1">
           {t.announce.link}
         </a>
       </span>

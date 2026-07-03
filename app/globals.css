@@ -11,8 +11,11 @@
   --txt: 10 10 10;
   --muted: 82 82 91;
   --dim: 138 138 147;
-  --accent-ink: 92 138 0;   /* darker lime for text on white */
-  --glow: rgba(216, 255, 62, 0.16);
+  /* --accent-ink: 92 138 0;   */
+   /* darker lime for text on white */
+  /* --glow: rgba(216, 255, 62, 0.16); */
+  --accent-ink: 176 108 12; /* #B06C0C */
+  --glow: rgba(250, 170, 50, 0.16);
 }
 
 [data-theme="dark"] {
@@ -23,8 +26,11 @@
   --txt: 245 245 244;
   --muted: 161 161 170;
   --dim: 113 113 122;
-  --accent-ink: 216 255 62; /* full lime reads fine on black */
-  --glow: rgba(216, 255, 62, 0.07);
+  /* --accent-ink: 216 255 62;  */
+  /* full lime reads fine on black */
+  /* --glow: rgba(216, 255, 62, 0.07); */
+  --accent-ink: 250 170 50; /* #FAAA32 */
+  --glow: rgba(250, 170, 50, 0.08);
 }
 
 html {
