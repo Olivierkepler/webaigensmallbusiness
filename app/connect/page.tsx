@@ -30,9 +30,13 @@ export default function ConnectPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-surface/60">
-        <div
+        {/* <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_42%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_36%)] pointer-events-none"
+        /> */}
+          <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,transparent_42%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_36%)] pointer-events-none"
         />
 
         <div
