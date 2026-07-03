@@ -39,6 +39,7 @@ function SearchResultsDropdown({
   onHover,
 }: SearchResultsDropdownProps) {
   const [mounted, setMounted] = useState(false);
+
   const position = useFloatingDropdownPosition(anchorRef, open, {
     gap: DROPDOWN_GAP,
     maxHeight: 420,
@@ -56,6 +57,7 @@ function SearchResultsDropdown({
     const activeItem = dropdownRef.current.querySelector<HTMLElement>(
       `[data-search-index="${activeIndex}"]`
     );
+
     activeItem?.scrollIntoView({ block: "nearest" });
   }, [activeIndex, dropdownRef, results]);
 
@@ -75,14 +77,7 @@ function SearchResultsDropdown({
         maxHeight: position.maxHeight,
         zIndex: 2147483646,
       }}
-      className="
-        overflow-y-auto overscroll-contain
-        rounded-2xl border border-line/10 bg-surface/95 backdrop-blur-xl
-        py-1.5 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)]
-        origin-top
-        animate-[searchDropdownIn_180ms_cubic-bezier(0.22,1,0.36,1)_both]
-        motion-reduce:animate-none
-      "
+      className="origin-top overflow-y-auto overscroll-contain rounded-2xl border border-line/10 bg-surface/95 py-1.5 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl animate-[searchDropdownIn_180ms_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:animate-none"
     >
       {results.length === 0 ? (
         <p className="px-4 py-3 text-[13px] text-dim">{noResultsLabel}</p>
@@ -107,15 +102,17 @@ function SearchResultsDropdown({
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <span className="text-[13.5px] font-semibold text-txt line-clamp-1">
+                    <span className="line-clamp-1 text-[13.5px] font-semibold text-txt">
                       {result.title}
                     </span>
-                    <span className="shrink-0 text-[10px] uppercase tracking-wider text-dim font-bold">
+
+                    <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-dim">
                       {result.category}
                     </span>
                   </div>
+
                   {result.subtitle && (
-                    <p className="mt-0.5 text-[12px] text-muted line-clamp-2">
+                    <p className="mt-0.5 line-clamp-2 text-[12px] text-muted">
                       {result.subtitle}
                     </p>
                   )}
@@ -132,6 +129,7 @@ function SearchResultsDropdown({
 
 export default function NavbarSearch() {
   const { t } = useLanguage();
+
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -144,7 +142,9 @@ export default function NavbarSearch() {
 
   const index = useMemo(() => buildSearchIndex(t), [t]);
   const results = useMemo(() => searchIndex(index, query), [index, query]);
-  const showDropdown = open && query.trim().length > 0;
+
+  const hasQuery = query.trim().length > 0;
+  const showDropdown = open && expanded && hasQuery;
 
   useEffect(() => {
     setActiveIndex(results.length > 0 ? 0 : -1);
@@ -156,6 +156,16 @@ export default function NavbarSearch() {
     setExpanded(false);
     setActiveIndex(-1);
   }, []);
+
+  const expandSearch = useCallback(() => {
+    setExpanded(true);
+    setOpen(true);
+  }, []);
+
+  const focusSearch = useCallback(() => {
+    expandSearch();
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, [expandSearch]);
 
   const navigate = useCallback(
     (href: string) => {
@@ -212,37 +222,51 @@ export default function NavbarSearch() {
     if (event.key === "ArrowDown") {
       event.preventDefault();
       setActiveIndex((current) => (current + 1) % results.length);
-    } else if (event.key === "ArrowUp") {
+    }
+
+    if (event.key === "ArrowUp") {
       event.preventDefault();
       setActiveIndex((current) =>
         current <= 0 ? results.length - 1 : current - 1
       );
-    } else if (event.key === "Enter" && activeIndex >= 0) {
+    }
+
+    if (event.key === "Enter" && activeIndex >= 0) {
       event.preventDefault();
       selectResult(results[activeIndex]);
     }
   }
 
-  function openMobileSearch() {
-    setExpanded(true);
-    setOpen(true);
-    requestAnimationFrame(() => inputRef.current?.focus());
+  function handleMouseLeave() {
+    if (hasQuery || document.activeElement === inputRef.current) return;
+
+    setOpen(false);
+    setExpanded(false);
   }
 
-  const inputClasses =
-    "w-full h-[42px] rounded-full border border-line/10 bg-surface pl-10 pr-4 text-[13.5px] text-txt placeholder:text-dim outline-none transition focus:border-accent-ink";
+  const inputClasses = `
+    h-[42px] w-full rounded-full border border-line/10 bg-surface
+    pl-10 pr-4 text-[13.5px] text-txt placeholder:text-dim outline-none
+    shadow-sm transition-all duration-300
+    focus:border-accent-ink focus:bg-surface
+  `;
 
   return (
     <div
       ref={containerRef}
-      className={`relative flex items-center ${expanded ? "flex-1 min-w-0" : ""}`}
+      onMouseEnter={expandSearch}
+      onMouseLeave={handleMouseLeave}
+      className={`relative flex items-center ${
+        expanded ? "flex-1 min-w-0 md:flex-none" : ""
+      }`}
     >
       {!expanded && (
         <button
           type="button"
-          onClick={openMobileSearch}
+          onClick={focusSearch}
+          onFocus={expandSearch}
           aria-label={t.search.open}
-          className="md:hidden w-[42px] h-[42px] rounded-full border border-line/10 bg-surface grid place-items-center text-muted transition hover:border-accent-ink shrink-0"
+          className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-full border border-line/10 bg-surface text-muted shadow-sm transition-all duration-300 hover:border-accent-ink hover:text-txt focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
         >
           <SearchIcon />
         </button>
@@ -250,9 +274,14 @@ export default function NavbarSearch() {
 
       <div
         ref={anchorRef}
-        className={`relative w-full md:w-[200px] lg:w-[240px] ${
-          expanded ? "block" : "hidden md:block"
-        }`}
+        className={`
+          relative overflow-hidden transition-all duration-300 ease-out
+          ${
+            expanded
+              ? "w-full opacity-100 md:w-[240px] lg:w-[280px]"
+              : "w-0 opacity-0 pointer-events-none"
+          }
+        `}
       >
         <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-dim">
           <SearchIcon />
@@ -265,8 +294,12 @@ export default function NavbarSearch() {
           onChange={(event) => {
             setQuery(event.target.value);
             setOpen(true);
+            setExpanded(true);
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true);
+            setExpanded(true);
+          }}
           onKeyDown={handleKeyDown}
           placeholder={t.search.placeholder}
           aria-label={t.search.placeholder}
@@ -295,7 +328,7 @@ export default function NavbarSearch() {
           type="button"
           onClick={closeSearch}
           aria-label={t.search.close}
-          className="md:hidden ml-2 w-[42px] h-[42px] rounded-full border border-line/10 bg-surface grid place-items-center text-muted shrink-0"
+          className="ml-2 grid h-[42px] w-[42px] shrink-0 place-items-center rounded-full border border-line/10 bg-surface text-muted shadow-sm transition hover:border-accent-ink hover:text-txt md:hidden"
         >
           ×
         </button>
