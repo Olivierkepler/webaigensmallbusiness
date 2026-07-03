@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, Search, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
-import LanguageToggle from "./LanguageToggle";
-import NavbarSearch from "./NavbarSearch";
+import ThemeToggle from "../../../components/ThemeToggle";
+import LanguageToggle from "../../../components/LanguageToggle";
+import NavbarSearch from "../../../components/NavbarSearch";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import NodeALogo from "./logo";
+import NodeALogo from "../../../components/logo";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -112,8 +112,8 @@ export default function Navbar() {
           motion-reduce:transition-none
           ${
             scrolled
-              ? "bg-bg/70  backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"
-              : "bg-bg/0 "
+              ? " bg-bg/70  backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"
+              : " "
           }
         `}
         style={{ transitionTimingFunction: EASE }}
@@ -190,7 +190,7 @@ export default function Navbar() {
             <ThemeToggle />
 
             <a
-              href="/connect"
+              href="#contact"
               className="
                 group relative inline-flex items-center justify-center gap-1.5
                 overflow-hidden rounded-full bg-txt text-bg font-semibold text-sm
