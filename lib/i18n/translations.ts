@@ -30,7 +30,7 @@ const en = {
     },
   },
   announce: {
-    text: "WebAiGen × ADAGE — Bringing AI automation education to Greater Boston.",
+    text: "WebAiGen — Bringing AI automation education to Greater Boston.",
     link: "Read more",
   },
   hero: {
