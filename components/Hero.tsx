@@ -66,7 +66,7 @@ export default function Hero() {
               </a>
 
               <a
-                href="#contact"
+                href="/connect"
                 className="w-full sm:w-auto text-center bg-surface text-txt border border-line/15 font-bold text-[15px] px-8 py-[15px] rounded-full transition hover:-translate-y-0.5 hover:border-accent-ink"
               >
                 Get in touch
