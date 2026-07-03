@@ -26,11 +26,18 @@ export default function Footer() {
               {t.footer.question}
               <br />
               <a
-                href="mailto:hello@webaigen.com"
+               href="mailto:webaigen3@gmail.com"
                 className="text-txt border-b border-line/30"
               >
-                hello@webaigen.com
+                   webaigen3@gmail.com
               </a>
+
+
+
+
+              
+
+
             </p>
             <p className="text-[14.5px] text-muted mt-3.5">
               {t.footer.speak}
@@ -39,7 +46,7 @@ export default function Footer() {
                 href="tel:+16175550123"
                 className="text-txt border-b border-line/30"
               >
-                +1 617 555 0123
+                +1 617 380 8053
               </a>
             </p>
           </div>
