@@ -109,7 +109,7 @@ export default function Navbar() {
       <nav
         className={`
           sticky top-0  z-50 w-full transition-all duration-500
-          motion-reduce:transition-none
+          motion-reduce:transition-none bg-surface/60
           ${
             scrolled
               ? "bg-bg/70  backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"

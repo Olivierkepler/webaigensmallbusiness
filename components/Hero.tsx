@@ -8,7 +8,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <header className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-[100px] pb-16 sm:pb-20 lg:pb-[90px] ">
+    <header className="relative bg-surface/60 overflow-hidden pt-20 sm:pt-24 lg:pt-[100px] pb-16 sm:pb-20 lg:pb-[90px] ">
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_460px] xl:grid-cols-[minmax(0,1fr)_520px] items-center gap-12 lg:gap-16">
           <div className="text-center lg:text-left">
@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         <Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 rounded-card overflow-hidden mt-8 sm:mt-9 lg:mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line/10  rounded-card overflow-hidden mt-8 sm:mt-9 lg:mt-12">
             {t.stats.map((s) => (
               <div
                 key={s.label}
