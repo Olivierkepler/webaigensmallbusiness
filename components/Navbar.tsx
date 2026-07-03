@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, Search, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
@@ -12,6 +14,7 @@ const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 export default function Navbar() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -25,7 +28,7 @@ export default function Navbar() {
       label: t.nav.services,
     },
     {
-      href: "#thesis",
+      href: "/industries",
       label: t.nav.industries,
     },
     {
@@ -33,7 +36,7 @@ export default function Navbar() {
       label: t.nav.work,
     },
     {
-      href: "#proof",
+      href: "/about",
       label: t.nav.about,
     },
     {
@@ -54,6 +57,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = links
+      .filter((l) => l.href.startsWith("#"))
       .map((l) => document.querySelector<HTMLElement>(l.href))
       .filter((el): el is HTMLElement => Boolean(el));
 
@@ -151,14 +155,12 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center rounded-full border border-line/10 bg-surface/50 backdrop-blur-xl p-1 shadow-sm">
             {links.map((link) => {
-              const isActive = activeId === link.href;
+              const isHash = link.href.startsWith("#");
+              const isActive = isHash
+                ? activeId === link.href
+                : pathname === link.href;
 
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`
+              const linkClassName = `
                     relative rounded-full px-4 py-2 text-[13.5px] font-medium
                     transition-all duration-300
                     ${
@@ -166,8 +168,10 @@ export default function Navbar() {
                         ? "text-bg"
                         : "text-muted hover:text-txt hover:bg-raised/70"
                     }
-                  `}
-                >
+                  `;
+
+              const linkContent = (
+                <>
                   {isActive && (
                     <span
                       aria-hidden="true"
@@ -176,7 +180,27 @@ export default function Navbar() {
                   )}
 
                   <span className="relative z-10">{link.label}</span>
+                </>
+              );
+
+              return isHash ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={linkClassName}
+                >
+                  {linkContent}
                 </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={linkClassName}
+                >
+                  {linkContent}
+                </Link>
               );
             })}
           </div>
@@ -315,14 +339,12 @@ export default function Navbar() {
 
             <nav className="mt-8 flex flex-col gap-2" aria-label="Primary">
               {links.map((link, index) => {
-                const isActive = activeId === link.href;
+                const isHash = link.href.startsWith("#");
+                const isActive = isHash
+                  ? activeId === link.href
+                  : pathname === link.href;
 
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={closeMenu}
-                    className={`
+                const linkClassName = `
                       group relative overflow-hidden rounded-2xl px-4 py-4 text-[15.5px]
                       font-semibold transition-all duration-500
                       hover:bg-surface/80
@@ -336,14 +358,15 @@ export default function Navbar() {
                           ? "opacity-100 translate-x-0"
                           : "opacity-0 translate-x-6"
                       }
-                    `}
-                    style={{
-                      transitionTimingFunction: EASE,
-                      transitionDelay: isOpen
-                        ? `${160 + index * 55}ms`
-                        : "0ms",
-                    }}
-                  >
+                    `;
+
+                const linkStyle = {
+                  transitionTimingFunction: EASE,
+                  transitionDelay: isOpen ? `${160 + index * 55}ms` : "0ms",
+                };
+
+                const linkContent = (
+                  <>
                     <span className="relative z-10">{link.label}</span>
 
                     <ArrowUpRight
@@ -356,7 +379,29 @@ export default function Navbar() {
                         group-hover:translate-x-0.5 group-hover:-translate-y-[55%]
                       "
                     />
+                  </>
+                );
+
+                return isHash ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className={linkClassName}
+                    style={linkStyle}
+                  >
+                    {linkContent}
                   </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className={linkClassName}
+                    style={linkStyle}
+                  >
+                    {linkContent}
+                  </Link>
                 );
               })}
             </nav>
