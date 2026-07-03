@@ -21,23 +21,23 @@ export default function Navbar() {
 
   const links = [
     {
-      href: "#method",
+      href: "/#method",
       label: t.nav.services,
     },
     {
-      href: "#thesis",
+      href: "/#thesis",
       label: t.nav.industries,
     },
     {
-      href: "#work",
+      href: "/#work",
       label: t.nav.work,
     },
     {
-      href: "#proof",
+      href: "/#proof",
       label: t.nav.about,
     },
     {
-      href: "#faq",
+      href: "/#faq",
       label: t.nav.faq,
     },
   ];
@@ -54,7 +54,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = links
-      .map((l) => document.querySelector<HTMLElement>(l.href))
+      .map((l) => {
+        const hash = l.href.includes("#") ? l.href.slice(l.href.indexOf("#")) : "";
+        return hash ? document.querySelector<HTMLElement>(hash) : null;
+      })
       .filter((el): el is HTMLElement => Boolean(el));
 
     if (!sections.length) return;
@@ -190,7 +193,7 @@ export default function Navbar() {
             <ThemeToggle />
 
             <a
-              href="#contact"
+              href="/#contact"
               className="
                 group relative inline-flex items-center justify-center gap-1.5
                 overflow-hidden rounded-full bg-txt text-bg font-semibold text-sm
@@ -377,7 +380,7 @@ export default function Navbar() {
             </div>
 
             <a
-              href="#contact"
+              href="/#contact"
               onClick={closeMenu}
               className={`
                 group mt-6 inline-flex w-full items-center justify-center gap-1.5

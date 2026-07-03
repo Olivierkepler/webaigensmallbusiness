@@ -61,7 +61,7 @@ const en = {
       desc: "From clinical platforms to cleaning services, cargo logistics, and travel tech.",
     },
     {
-      n: "2023",
+      n: "2026",
       label: "Year Founded",
       desc: "Founded in Boston as a lean alternative to the bloated traditional agency model.",
     },
@@ -249,7 +249,7 @@ const en = {
       { city: "Port-au-Prince", addr: "Remote Hub" },
     ],
     copyright: "© 2026 WebAiGen. All Rights Reserved.",
-    tagline: "EST. 2023 — Boston & Global",
+    tagline: "EST. 2026 — Boston & Global",
   },
   theme: {
     light: "Switch to light mode",
@@ -317,7 +317,7 @@ const fr: typeof en = {
       desc: "Des plateformes cliniques aux services de nettoyage, en passant par la logistique et la tech voyage.",
     },
     {
-      n: "2023",
+      n: "2026",
       label: "Année de création",
       desc: "Fondée à Boston comme alternative agile au modèle d'agence traditionnelle.",
     },
@@ -505,7 +505,7 @@ const fr: typeof en = {
       { city: "Port-au-Prince", addr: "Hub distant" },
     ],
     copyright: "© 2026 WebAiGen. Tous droits réservés.",
-    tagline: "FONDÉ EN 2023 — Boston & international",
+    tagline: "FONDÉ EN 2026 — Boston & international",
   },
   theme: {
     light: "Passer en mode clair",
@@ -573,7 +573,7 @@ const es: typeof en = {
       desc: "Desde plataformas clínicas hasta servicios de limpieza, logística y tecnología de viajes.",
     },
     {
-      n: "2023",
+      n: "2026",
       label: "Año de fundación",
       desc: "Fundada en Boston como alternativa ágil al modelo de agencia tradicional.",
     },
@@ -761,7 +761,7 @@ const es: typeof en = {
       { city: "Port-au-Prince", addr: "Hub remoto" },
     ],
     copyright: "© 2026 WebAiGen. Todos los derechos reservados.",
-    tagline: "FUNDADA EN 2023 — Boston y global",
+    tagline: "FUNDADA EN 2026 — Boston y global",
   },
   theme: {
     light: "Cambiar a modo claro",
