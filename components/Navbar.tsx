@@ -112,7 +112,7 @@ export default function Navbar() {
           motion-reduce:transition-none
           ${
             scrolled
-              ? "bg-bg/70 border-b border-line/15 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"
+              ? "bg-bg/70  backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"
               : "bg-bg/0 border-b border-transparent"
           }
         `}
@@ -121,7 +121,7 @@ export default function Navbar() {
         <div
           className={`
             max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-4
-        
+        mt-8 sm:mt-0 lg:mt-8
             transition-[height] duration-500 motion-reduce:transition-none
             ${scrolled ? "h-[62px]" : "h-[76px]"}
           `}
