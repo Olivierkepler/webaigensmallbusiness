@@ -320,7 +320,7 @@ export default function Navbar() {
                 return (
                   <a
                     key={link.href}
-                    href={link.href}
+                    href={link.href} 
                     onClick={closeMenu}
                     className={`
                       group relative overflow-hidden rounded-2xl px-4 py-4 text-[15.5px]

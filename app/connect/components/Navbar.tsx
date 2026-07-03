@@ -193,7 +193,7 @@ export default function Navbar() {
             <ThemeToggle />
 
             <a
-              href="/#contact"
+              href="/connect"
               className="
                 group relative inline-flex items-center justify-center gap-1.5
                 overflow-hidden rounded-full bg-txt text-bg font-semibold text-sm
@@ -380,7 +380,7 @@ export default function Navbar() {
             </div>
 
             <a
-              href="/#contact"
+              href="/connect"
               onClick={closeMenu}
               className={`
                 group mt-6 inline-flex w-full items-center justify-center gap-1.5
