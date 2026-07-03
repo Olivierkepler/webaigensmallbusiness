@@ -8,7 +8,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <header className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-[100px] pb-16 sm:pb-20 lg:pb-[90px]">
+    <header className="relative overflow-hidden pt-20 sm:pt-24 lg:pt-[100px] pb-16 sm:pb-20 lg:pb-[90px] ">
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_460px] xl:grid-cols-[minmax(0,1fr)_520px] items-center gap-12 lg:gap-16">
           <div className="text-center lg:text-left">
@@ -63,35 +63,38 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:flex justify-center lg:justify-end pointer-events-none select-none">
-            <div className="w-full max-w-[460px] xl:max-w-[520px] opacity-95">
-              <NodeALogo size="100%" />
+          <div className="hidden lg:flex justify-center lg:justify-end pointer-events-none select-none ">
+            <div className="w-full max-w-[460px] xl:max-w-[520px] opacity-95 flex justify-end">
+              <NodeALogo size="70%" />
             </div>
+       
           </div>
         </div>
 
         <Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 rounded-card overflow-hidden mt-14 sm:mt-16 lg:mt-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line/10 border border-line/10 rounded-card overflow-hidden mt-8 sm:mt-9 lg:mt-12">
             {t.stats.map((s) => (
               <div
                 key={s.label}
-                className="bg-surface p-6 sm:p-7 transition-colors hover:bg-raised"
+                className="bg-surface p-3 sm:p-3.5 transition-colors hover:bg-raised"
               >
-                <div className="text-[clamp(28px,7vw,44px)] font-extrabold tracking-tight">
+                <div className="text-[clamp(18px,5vw,28px)] font-extrabold tracking-tight">
                   {s.n}
                 </div>
 
-                <div className="text-[13px] text-dim tracking-[0.12em] uppercase mt-1.5 font-semibold">
+                <div className="text-[11px] text-dim tracking-[0.11em] uppercase mt-1 font-semibold">
                   {s.label}
                 </div>
 
-                <p className="text-[13.5px] text-muted mt-3.5 leading-normal">
+                <p className="text-[11.5px] text-muted mt-2.5 leading-snug">
                   {s.desc}
                 </p>
               </div>
             ))}
           </div>
         </Reveal>
+
+   
       </div>
     </header>
   );

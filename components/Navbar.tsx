@@ -121,7 +121,7 @@ export default function Navbar() {
         <div
           className={`
             max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-4
-            mt-4 sm:mt-6 lg:mt-8   // <-- Added padding-top
+        
             transition-[height] duration-500 motion-reduce:transition-none
             ${scrolled ? "h-[62px]" : "h-[76px]"}
           `}
