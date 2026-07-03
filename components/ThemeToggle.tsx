@@ -8,7 +8,7 @@ type Theme = "light" | "dark";
 
 export default function ThemeToggle() {
   const { t } = useLanguage();
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const current = document.documentElement.getAttribute("data-theme");

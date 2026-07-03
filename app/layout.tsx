@@ -9,11 +9,20 @@ export const metadata: Metadata = {
 };
 
 // Runs before paint so a saved dark preference never flashes white.
+// const themeInit = `
+// try {
+//   const t = localStorage.getItem("theme");
+//   if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
+// } catch (_) {}
+// `;
+
 const themeInit = `
 try {
   const t = localStorage.getItem("theme");
-  if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
-} catch (_) {}
+  document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+} catch (_) {
+  document.documentElement.setAttribute("data-theme", "dark");
+}
 `;
 
 const localeInit = `
@@ -27,7 +36,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script dangerouslySetInnerHTML={{ __html: localeInit }} />
