@@ -106,10 +106,11 @@ export default function ConnectForm() {
     }
   }
 
-  if (status === "success") {
+    if (status === "success") {
     return (
       <div
         role="status"
+        
         className="relative overflow-hidden rounded-[2rem] border border-line/10 bg-bg/80 p-8 text-center shadow-sm backdrop-blur-xl sm:p-10 lg:p-12"
       >
         <div
@@ -130,6 +131,15 @@ export default function ConnectForm() {
             Thanks for reaching out — we’ll get back to you within one business
             day with next steps.
           </p>
+          <div className="mt-8">
+  <button
+    type="button"
+    onClick={() => setStatus("idle")}
+    className="rounded-full bg-txt px-6 py-3 text-sm font-bold text-bg transition hover:bg-accent hover:text-black"
+  >
+    Send another message
+  </button>
+</div>
         </div>
       </div>
     );
