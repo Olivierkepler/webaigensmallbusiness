@@ -1,12 +1,14 @@
 // app/api/connect/route.ts
-// No email provider yet — this version just validates and logs submissions.
-// The form UX (loading spinner -> success panel) works fully.
 
 import { NextResponse } from "next/server";
+import { google } from "googleapis";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
     const {
       name,
       email,
@@ -19,13 +21,13 @@ export async function POST(req: Request) {
       referral,
     } = body ?? {};
 
-    // Minimal server-side validation
     if (!name || !email || !goals) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
+
     if (
       typeof email !== "string" ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -34,36 +36,60 @@ export async function POST(req: Request) {
     }
 
     const submission = {
-      receivedAt: new Date().toISOString(),
+      receivedAt: new Date().toLocaleString(),
       name,
-      company: company || null,
+      company: company || "",
       email,
-      phone: phone ? `${dialCode ?? ""} ${phone}`.trim() : null,
-      interests: Array.isArray(interests) ? interests : [],
-      budget: budget || null,
-      referral: referral || null,
+      phone: phone ? `${dialCode ?? ""} ${phone}`.trim() : "",
+      interests: Array.isArray(interests) ? interests.join(", ") : "",
+      budget: budget || "",
+      referral: referral || "",
       goals,
     };
 
-    // For now: visible in your terminal running `next dev`
-    // (and in Vercel function logs once deployed)
-    console.log("📩 New connect submission:\n", JSON.stringify(submission, null, 2));
-
-    /* ── LATER: plug in Resend here ─────────────────────────────
-    import { Resend } from "resend";                // top of file
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "WebAiGen <hello@webaigen.com>",
-      to: ["hello@webaigen.com"],
-      replyTo: email,
-      subject: `New inquiry — ${name}`,
-      text: JSON.stringify(submission, null, 2),
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      },
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-    ─────────────────────────────────────────────────────────── */
+
+    const sheets = google.sheets({
+      version: "v4",
+      auth,
+    });
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      range: "Sheet1!A:I",
+      valueInputOption: "RAW",
+      requestBody: {
+        values: [
+          [
+            submission.receivedAt,
+            submission.name,
+            submission.company,
+            submission.email,
+            submission.phone,
+            submission.interests,
+            submission.budget,
+            submission.referral,
+            submission.goals,
+          ],
+        ],
+      },
+    });
+
+    console.log("Lead saved to Google Sheet:", submission);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("connect form error:", err);
-    return NextResponse.json({ error: "Failed to send" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Failed to save lead" },
+      { status: 500 }
+    );
   }
 }
