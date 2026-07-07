@@ -36,6 +36,7 @@ type TeamMember = {
 };
 
 const team: TeamMember[] = [
+  
     {
         id: "arianna",
         name: "Arianna",
@@ -49,6 +50,21 @@ const team: TeamMember[] = [
         photo: "/images/team/ariana.png",
         bio: "Arianna bridges design and logic. She's fluent in web design, economic reasoning, and the algorithms that hold a product together, and makes sure every experience we build is as sound underneath as it is beautiful on the surface.",
       },
+      {
+        id: "balaji",
+        name: "Balaji Tanniru",
+        role: "AI & Machine Learning Engineer",
+        credentials: [
+          "B.S. in Computer Science",
+          "M.S. in Computer Science, Artificial Intelligence",
+          "Specialization in Databases, Machine Learning & User Interface Design",
+        ],
+        initials: "B",
+        gradient: "from-violet-500 via-fuchsia-400 to-pink-400",
+        photo: "/images/team/balaji.png",
+        bio: "Balaji Tanniru is an AI & Machine Learning Engineer focused on building intelligent, scalable, and user-centric solutions. With expertise in artificial intelligence, software engineering, database systems, and modern web technologies, he develops reliable AI-powered applications that transform complex business challenges into practical, data-driven solutions."
+      },
+      
   {
     id: "oliver",
     name: "Olivier",
@@ -59,21 +75,7 @@ const team: TeamMember[] = [
     photo: "/images/team/olivier.png",
     bio: "Oliver turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his economics background means every recommendation is judged on measurable return, not just polish.",
   },
-  {
-    id: "balaji",
-    name: "Balaji",
-    role: "AI & Systems Engineer",
-    credentials: [
-      "B.S. in Computer Science",
-      "M.S. in Computer Science (Artificial Intelligence)",
-      "Databases & User Interface",
-    ],
-    initials: "B",
-    gradient: "from-violet-500 via-fuchsia-400 to-pink-400",
   
-
-    bio: "Balaji architects what runs under the hood. That means AI models, database design, and the interfaces people actually touch. His graduate focus on artificial intelligence keeps the automation we ship dependable, not just powerful.",
-  },
   
 ];
 
