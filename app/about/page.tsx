@@ -21,7 +21,7 @@ import AnnounceBar from "@/components/AnnounceBar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import Navbar from "../connect/components/Navbar";
-
+ 
 type TeamMember = {
   id: string;
   name: string;
@@ -75,7 +75,21 @@ const team: TeamMember[] = [
     photo: "/images/team/olivier.png",
     bio: "Oliver turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his economics background means every recommendation is judged on measurable return, not just polish.",
   },
+  {
+    id: "balaji",
+    name: "Balaji",
+    role: "AI & Systems Engineer",
+    credentials: [
+      "B.S. in Computer Science",
+      "M.S. in Computer Science (Artificial Intelligence)",
+      "Databases & User Interface",
+    ],
+    initials: "B",
+    gradient: "from-violet-500 via-fuchsia-400 to-pink-400",
   
+
+    bio: "Balaji architects what runs under the hood. That means AI models, database design, and the interfaces people actually touch. His graduate focus on artificial intelligence keeps the automation we ship dependable, not just powerful.",
+  },
   
 ];
 
