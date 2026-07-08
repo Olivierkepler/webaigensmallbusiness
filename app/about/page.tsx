@@ -60,7 +60,7 @@ const team: TeamMember[] = [
     initials: "O",
     gradient: "from-sky-400 via-cyan-400 to-emerald-400",
     photo: "/images/team/olivier.png",
-    bio: "Olivier turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his economics background means every recommendation is judged on measurable return, not just polish.",
+    bio: "Olivier turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his software engineering and AI development background means every recommendation is judged on measurable return, not just polish.",
   },
   {
     id: "balaji",
