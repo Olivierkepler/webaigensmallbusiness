@@ -53,14 +53,14 @@ const team: TeamMember[] = [
   
       
   {
-    id: "oliver",
+    id: "olivier",
     name: "Olivier",
     role: "Research Specialist",
     credentials: ["M.S. in Computer Science", "M.S. in Business Analytics", "AI & Machine Learning"],
     initials: "O",
     gradient: "from-sky-400 via-cyan-400 to-emerald-400",
     photo: "/images/team/olivier.png",
-    bio: "Oliver turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his economics background means every recommendation is judged on measurable return, not just polish.",
+    bio: "Olivier turns markets and user behavior into evidence. He's the research backbone that keeps every strategy grounded in real numbers, not guesses, and his economics background means every recommendation is judged on measurable return, not just polish.",
   },
   {
     id: "balaji",
