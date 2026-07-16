@@ -8,7 +8,7 @@ import Method from "@/components/Method";
 import Work from "@/components/Work";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
-
+import Chatbot from "@/components/chabot";
 export default function Home() {
   return (
     <>
@@ -25,6 +25,7 @@ export default function Home() {
        
         <Faq />
       </main>
+      <Chatbot />
       <Footer />
     </>
   );
