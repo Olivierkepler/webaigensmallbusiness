@@ -63,24 +63,7 @@ export default function RootLayout({
 
       <body className="bg-bg text-txt antialiased overflow-x-hidden font-sans">
         <Providers>
-          <header className="w-full bg-[#ffae2b]">
-            <div className="mx-auto flex min-h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-              <Link
-                href="/"
-                className="inline-flex items-center"
-                aria-label="WebAiGen home"
-              >
-                <Image
-                  src="/images/webaigen_cropped.png"
-                  alt="WebAiGen"
-                  width={220}
-                  height={70}
-                  priority
-                  className="h-12 w-auto object-contain"
-                />
-              </Link>
-            </div>
-          </header>
+      
 
           <main>{children}</main>
         </Providers>
