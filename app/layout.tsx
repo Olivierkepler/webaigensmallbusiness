@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "WebAiGen — Brand, Web & AI Growth Partner",
   description:
     "WebAiGen partners with startups, clinics, and local businesses on brand strategy, web engineering, and AI automation that drive revenue.",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
 // Runs before paint so a saved dark preference never flashes white.
