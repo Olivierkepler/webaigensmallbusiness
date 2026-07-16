@@ -1,6 +1,6 @@
 "use client";
 
-import NodeALogo from "./logo";
+import OrangeLogo from "./OrangeLogo";
 import Reveal from "./Reveal";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
@@ -76,7 +76,7 @@ export default function Hero() {
 
           <div className="hidden lg:flex justify-center lg:justify-end pointer-events-none select-none">
             <div className="w-full max-w-[460px] xl:max-w-[520px] opacity-95 flex justify-end">
-              <NodeALogo size="70%" />
+              <OrangeLogo size={400} />
             </div>
           </div>
         </div>
