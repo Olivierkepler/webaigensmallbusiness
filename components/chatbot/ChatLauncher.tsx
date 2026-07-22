@@ -1,7 +1,7 @@
 "use client";
 
 import BlinkingRobot from "../BlinkingRobot";
-
+import { WifiAnimated } from "./WifiAnimated";
 type ChatLauncherProps = {
   onOpen: () => void;
   launcherRef: React.RefObject<HTMLButtonElement>;
@@ -41,7 +41,7 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         "
         aria-hidden="true"
       />
-
+{/* 
       <span
         className="
           relative hidden items-center
@@ -57,27 +57,15 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         "
       >
         Chat with us
-      </span>
+      </span> */}
 
       <span className="relative block scale-[0.62] sm:scale-[0.78] md:scale-90">
         <BlinkingRobot size={120} />
       </span>
 
-      <span
-        className="
-          absolute right-0 top-1
-          flex h-4 min-w-4 items-center justify-center
-          rounded-full border-2 border-bg
-          bg-emerald-500 px-1
-          shadow-sm
-          sm:h-5 sm:min-w-5
-        "
-        role="status"
-        aria-label="Assistant is online"
-      >
-        <span className="sr-only">Online</span>
-        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white" />
-      </span>
+     {/* add a badge online */}
+<WifiAnimated />
+
     </button>
   );
 }
