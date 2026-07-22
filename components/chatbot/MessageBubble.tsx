@@ -24,7 +24,7 @@ export default function MessageBubble({
         <div
           className="
             mb-5 flex h-8 w-8 shrink-0 items-center justify-center
-            rounded-xl border border-line/10 bg-surface shadow-sm
+             
             sm:h-9 sm:w-9
           "
           aria-hidden="true"
