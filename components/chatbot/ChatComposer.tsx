@@ -60,11 +60,10 @@ export default function ChatComposer({
       <div
         className="
           flex items-end gap-2
-          rounded-2xl border border-zinc-200 bg-white p-1.5
+          rounded-2xl border border-line/15 bg-surface p-1.5
           shadow-sm transition
-          focus-within:border-[#0F766E]/50
-          focus-within:ring-4 focus-within:ring-[#0F766E]/10
-          dark:border-zinc-800 dark:bg-zinc-900
+          focus-within:border-accent/50
+          focus-within:ring-4 focus-within:ring-accent/15
         "
       >
         <textarea
@@ -87,10 +86,9 @@ export default function ChatComposer({
             resize-none bg-transparent
             px-3 py-3
             text-base font-medium leading-5
-            text-zinc-950 outline-none
-            placeholder:text-zinc-400
+            text-txt outline-none
+            placeholder:text-dim
             disabled:cursor-not-allowed disabled:opacity-60
-            dark:text-white dark:placeholder:text-zinc-500
             sm:text-[15px]
           "
           aria-label="Chat message"
@@ -103,24 +101,23 @@ export default function ChatComposer({
           className="
             mb-0.5 flex h-11 w-11 shrink-0 items-center justify-center
             self-end rounded-xl
-            bg-orange-500 text-white
-            shadow-lg shadow-orange-500/20
+            bg-accent text-[#0a0a0a]
+            shadow-lg shadow-accent/20
             transition
-            hover:bg-orange-600
+            hover:brightness-95
             active:scale-95
             focus-visible:outline-none
-            focus-visible:ring-2 focus-visible:ring-orange-400
-            focus-visible:ring-offset-2
+            focus-visible:ring-2 focus-visible:ring-accent
+            focus-visible:ring-offset-2 focus-visible:ring-offset-bg
             disabled:cursor-not-allowed
-            disabled:bg-zinc-300 disabled:shadow-none
-            dark:disabled:bg-zinc-700
-            dark:focus-visible:ring-offset-zinc-900
+            disabled:bg-raised disabled:text-dim disabled:shadow-none
+            disabled:hover:brightness-100
           "
           aria-label={disabled ? "Sending message" : "Send message"}
         >
           {disabled ? (
             <span
-              className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white motion-reduce:animate-none"
+              className="h-4 w-4 animate-spin rounded-full border-2 border-[#0a0a0a]/25 border-t-[#0a0a0a] motion-reduce:animate-none"
               aria-hidden="true"
             />
           ) : (
@@ -145,7 +142,7 @@ export default function ChatComposer({
       <div className="flex items-center justify-between gap-2 px-0.5">
         <p
           id="chat-composer-hint"
-          className="text-[10px] text-zinc-400 sm:text-[11px]"
+          className="text-[10px] text-dim sm:text-[11px]"
         >
           Enter to send · Shift + Enter for a new line
         </p>
@@ -153,8 +150,8 @@ export default function ChatComposer({
           <p
             className={`text-[10px] tabular-nums sm:text-[11px] ${
               value.length >= MAX_MESSAGE_LENGTH
-                ? "font-semibold text-orange-600"
-                : "text-zinc-400"
+                ? "font-semibold text-accent-ink"
+                : "text-dim"
             }`}
             aria-live="polite"
           >

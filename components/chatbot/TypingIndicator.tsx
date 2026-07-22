@@ -12,10 +12,9 @@ export default function TypingIndicator() {
         className="
           flex max-w-[84%] items-center gap-1.5
           rounded-2xl rounded-bl-md
-          border border-zinc-200 bg-white
+          border border-line/10 bg-surface
           px-4 py-3
           shadow-sm
-          dark:border-zinc-800 dark:bg-zinc-900
           sm:rounded-3xl sm:rounded-bl-md
         "
       >
@@ -23,10 +22,9 @@ export default function TypingIndicator() {
           <span
             key={dot}
             className="
-              h-2 w-2 rounded-full bg-zinc-400
+              h-2 w-2 rounded-full bg-dim
               animate-bounce
               motion-reduce:animate-none
-              dark:bg-zinc-500
             "
             style={{ animationDelay: `${dot * 120}ms` }}
             aria-hidden="true"

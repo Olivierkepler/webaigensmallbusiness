@@ -50,9 +50,8 @@ export default function MessageList({ messages, isTyping }: MessageListProps) {
       className="
         min-h-0 flex-1 overflow-y-auto
         overscroll-contain
-        bg-[linear-gradient(to_bottom,#fafafa,#f4f4f5)]
+        bg-bg
         px-3 py-4
-        dark:bg-[linear-gradient(to_bottom,#09090b,#18181b)]
         sm:px-5 sm:py-5
       "
       tabIndex={0}

@@ -31,20 +31,18 @@ export default function QuickQuestions({
             onClick={() => onSelect(question)}
             className="
               shrink-0 rounded-full
-              border border-zinc-200 bg-zinc-50
+              border border-line/15 bg-raised
               px-3.5 py-2.5
-              text-xs font-semibold text-zinc-600
+              text-xs font-semibold text-muted
               transition
-              hover:border-[#0F766E]/30 hover:bg-[#0F766E]/5 hover:text-[#0F766E]
+              hover:border-[#0F766E]/40 hover:bg-[#0F766E]/10 hover:text-[#0F766E]
               active:scale-[0.98]
               focus-visible:outline-none
               focus-visible:ring-2
-              focus-visible:ring-[#0F766E]/40
+              focus-visible:ring-accent/50
               focus-visible:ring-offset-2
+              focus-visible:ring-offset-bg
               disabled:cursor-not-allowed disabled:opacity-50
-              dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300
-              dark:hover:text-[#5EEAD4]
-              dark:focus-visible:ring-offset-zinc-950
             "
           >
             {question}
@@ -55,9 +53,7 @@ export default function QuickQuestions({
       <div
         className="
           pointer-events-none absolute inset-y-0 right-0 w-8
-          bg-gradient-to-l from-white to-transparent
-          dark:from-zinc-950
-          sm:from-white
+          bg-gradient-to-l from-bg to-transparent
         "
         aria-hidden="true"
       />

@@ -26,7 +26,7 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         motion-reduce:transition-none
         hover:scale-[1.02]
         active:scale-95
-      
+       
         sm:bottom-[max(1.25rem,env(safe-area-inset-bottom))]
         sm:right-[max(1.25rem,env(safe-area-inset-right))]
       "
@@ -35,10 +35,9 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         className="
           pointer-events-none absolute
           h-16 w-16 rounded-full
-          bg-orange-500/20 blur-2xl
+          bg-accent/20 blur-2xl
           motion-reduce:hidden
           sm:h-20 sm:w-20
-          dark:bg-orange-300/15
         "
         aria-hidden="true"
       />
@@ -46,16 +45,14 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
       <span
         className="
           relative hidden items-center
-          rounded-full border border-zinc-200/80
-          bg-white/95 px-3.5 py-2
-          text-sm font-semibold text-zinc-800
+          rounded-full border border-line/15
+          bg-surface/95 px-3.5 py-2
+          text-sm font-semibold text-txt
           shadow-lg shadow-black/10
           backdrop-blur-sm
           transition
-          group-hover:border-[#0F766E]/30
-          dark:border-zinc-700
-          dark:bg-zinc-900/95
-          dark:text-zinc-100
+          group-hover:border-[#0F766E]/40
+          group-hover:text-[#0F766E]
           md:inline-flex
         "
       >
@@ -70,12 +67,10 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         className="
           absolute right-0 top-1
           flex h-4 min-w-4 items-center justify-center
-          rounded-full border-2 border-white
+          rounded-full border-2 border-bg
           bg-emerald-500 px-1
-          text-[8px] font-bold uppercase tracking-wide text-white
           shadow-sm
-          sm:h-5 sm:min-w-5 sm:text-[9px]
-          dark:border-zinc-950
+          sm:h-5 sm:min-w-5
         "
         role="status"
         aria-label="Assistant is online"

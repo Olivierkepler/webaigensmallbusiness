@@ -179,11 +179,10 @@ export default function Chatbot() {
             fixed inset-0 z-50
             flex h-[100dvh] max-h-[100dvh] w-full flex-col
             overflow-hidden
-            bg-white text-zinc-950
+            bg-bg text-txt
             shadow-2xl
             animate-[searchDropdownIn_180ms_ease-out]
             motion-reduce:animate-none
-            dark:bg-zinc-950 dark:text-white
 
             sm:inset-auto
             sm:bottom-[max(1rem,env(safe-area-inset-bottom))]
@@ -192,7 +191,7 @@ export default function Chatbot() {
             sm:max-h-[calc(100dvh-2rem)]
             sm:w-[min(440px,calc(100vw-2rem))]
             sm:rounded-3xl
-            sm:border sm:border-zinc-200/80
+            sm:border sm:border-line/15
             sm:shadow-[0_30px_100px_rgba(0,0,0,0.22)]
 
             md:w-[min(460px,calc(100vw-2.5rem))]
@@ -213,12 +212,11 @@ export default function Chatbot() {
           <footer
             className="
               shrink-0
-              border-t border-zinc-200/80
-              bg-white/95
+              border-t border-line/10
+              bg-bg/95
               px-3 pt-3
               pb-[max(0.75rem,env(safe-area-inset-bottom))]
               backdrop-blur-xl
-              dark:border-zinc-800 dark:bg-zinc-950/95
               sm:px-5 sm:pb-4 sm:pt-4
             "
           >
