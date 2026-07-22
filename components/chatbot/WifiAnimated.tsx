@@ -5,17 +5,16 @@ export function WifiAnimated() {
     <span
       className="
         absolute
-        -top-1
-        -right-1
+        top-3
+        right-4
+        sm:-top-1   
+        sm:right-1
         
         flex
         h-7
         w-7
         items-center
         justify-center
-        -right-10
-        sm:-right-1
-   
       
         shadow-emerald-500/30
       "
