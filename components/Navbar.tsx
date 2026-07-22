@@ -120,7 +120,7 @@ export default function Navbar() {
       >
         <div
           className={`
-            max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-4
+            max-w-full mx-auto px-10 sm:px-20 flex items-center justify-between gap-4
       
             transition-[height] duration-500 motion-reduce:transition-none
             ${scrolled ? "h-[62px]" : "h-[76px]"}
@@ -130,7 +130,7 @@ export default function Navbar() {
           <a
             href="/"
             aria-label={t.nav.logoAlt}
-            className="
+            className=" 
               group shrink-0 flex items-center gap-2.5 rounded-full
               focus-visible:outline-none focus-visible:ring-2
               focus-visible:ring-accent/60 focus-visible:ring-offset-2
@@ -139,15 +139,22 @@ export default function Navbar() {
           >
             <span className="relative grid place-items-center">
               <span className="absolute inset-0 rounded-full bg-accent/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <NodeALogo size={34} />
+              <NodeALogo size={44} />
             </span>
 
-            <span className="hidden sm:inline-flex text-[17px] font-bold tracking-[-0.03em] text-txt leading-none">
-              Web
-              <span className="text-accent">Ai</span>
-              Gen
-            </span>
-          </a>
+            <div className="flex flex-col items-center justify-center gap-1">
+            <span className="text-[24px] font-black italic leading-[0.9] tracking-tight ">
+        
+              
+        Web
+        <span className="text-accent">Ai</span>
+        Gen
+      </span>
+      <span className="text-[16px] font-normal leading-[0.9] tracking-tight ">AI Agentic Platform</span>
+
+            </div>
+            
+                </a>
 
           <div className="hidden lg:flex items-center rounded-full border border-line/10 bg-surface/50 backdrop-blur-xl p-1 shadow-sm">
             {links.map((link) => {

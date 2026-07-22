@@ -15,9 +15,12 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_520px]">
           <div className="text-center lg:text-left">
-            <h1 className="mx-auto max-w-[12ch] text-[clamp(32px,6vw,54px)] font-normal leading-[1.06] tracking-[-0.055em] text-txt lg:mx-0">
+          <h2 className="max-w-[560px] text-[52px] font-black italic leading-[0.9] tracking-tight sm:text-[60px]">
+        
+             
+             
               {t.hero.title}
-            </h1>
+            </h2>
 
             <p className="mx-auto mt-6 max-w-[640px] text-[clamp(16px,2.4vw,20px)] leading-relaxed text-muted sm:mt-7 lg:mx-0">
               {t.hero.description}{" "}
