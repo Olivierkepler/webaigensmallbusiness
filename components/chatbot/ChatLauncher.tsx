@@ -26,8 +26,7 @@ export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps)
         motion-reduce:transition-none
         hover:scale-[1.02]
         active:scale-95
-        focus-visible:ring-4
-        focus-visible:ring-orange-400/40
+      
         sm:bottom-[max(1.25rem,env(safe-area-inset-bottom))]
         sm:right-[max(1.25rem,env(safe-area-inset-right))]
       "

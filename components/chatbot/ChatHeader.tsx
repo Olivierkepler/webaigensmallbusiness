@@ -54,9 +54,9 @@ export default function ChatHeader({
                 id={titleId}
                 className="truncate text-base font-bold tracking-tight sm:text-lg"
               >
-                WebAiGen Academy
+                WebAiGen
               </h2>
-              <span
+              {/* <span
                 className="inline-flex items-center gap-1 rounded-full bg-white/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-200"
                 role="status"
               >
@@ -65,7 +65,7 @@ export default function ChatHeader({
                   aria-hidden="true"
                 />
                 Online
-              </span>
+              </span> */}
             </div>
             <p className="mt-0.5 truncate text-xs text-white/70 sm:text-sm">
               Business and AI assistant
