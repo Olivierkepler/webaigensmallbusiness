@@ -108,7 +108,7 @@ export default function Navbar() {
     <>
       <nav
         className={`
-          sticky top-0  z-50 w-full transition-all duration-500
+          sticky top-0 py-4  z-50 w-full transition-all duration-500
           motion-reduce:transition-none bg-surface/60
           ${
             scrolled
@@ -121,7 +121,7 @@ export default function Navbar() {
         <div
           className={`
             max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-4
-        mt-8 sm:mt-0 lg:mt-8
+      
             transition-[height] duration-500 motion-reduce:transition-none
             ${scrolled ? "h-[62px]" : "h-[76px]"}
           `}
