@@ -10,13 +10,7 @@ export default function Thesis() {
   return (
     <section
       id="thesis"
-      className="
-        relative overflow-hidden
-        bg-white
-        text-zinc-950
-        dark:bg-zinc-950
-        dark:text-white
-      "
+      className="relative overflow-hidden bg-bg text-txt"
     >
       <div className="mx-auto grid min-h-[760px] max-w-[1800px] grid-cols-1 items-stretch lg:grid-cols-[54%_46%]">
         {/* Content */}
@@ -34,9 +28,7 @@ export default function Thesis() {
                   font-extrabold
                   leading-[1.05]
                   tracking-[-0.045em]
-                  text-zinc-950
-                  dark:text-white
-             
+                  text-txt
                 "
               >
                 {t.thesis.title}
@@ -47,8 +39,7 @@ export default function Thesis() {
                   mt-7 max-w-[720px]
                   text-[clamp(1rem,1.4vw,1.2rem)]
                   leading-8
-                  text-zinc-600
-                  dark:text-zinc-300
+                  text-muted
                 "
               >
                 {t.thesis.description}
@@ -64,27 +55,23 @@ export default function Thesis() {
                       group grid
                       grid-cols-[auto_1fr]
                       gap-5
-                      border-b border-zinc-200
+                      border-b border-line/20
                       pb-7
-                      dark:border-zinc-800
                     "
                   >
                     <div
                       className="
                         flex h-16 min-w-20 items-center justify-center
                         rounded-2xl
-                        bg-zinc-950
+                        bg-txt
                         px-4
                         text-2xl font-black
                         tracking-[-0.04em]
-                        text-white
+                        text-bg
                         transition duration-300
                         group-hover:-translate-y-1
                         group-hover:bg-accent
-                        dark:bg-white
-                        dark:text-zinc-950
-                        dark:group-hover:bg-accent
-                        dark:group-hover:text-white
+                        group-hover:text-white
                         motion-reduce:transform-none
                       "
                     >
@@ -93,7 +80,7 @@ export default function Thesis() {
 
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <h3 className="text-lg font-bold tracking-tight text-zinc-950 dark:text-white">
+                        <h3 className="text-lg font-bold tracking-tight text-txt">
                           {item.title}
                         </h3>
 
@@ -102,7 +89,7 @@ export default function Thesis() {
                         </span>
                       </div>
 
-                      <p className="mt-2 max-w-[60ch] text-[15px] leading-6 text-zinc-600 dark:text-zinc-400">
+                      <p className="mt-2 max-w-[60ch] text-[15px] leading-6 text-muted">
                         {item.desc}
                       </p>
                     </div>
@@ -122,8 +109,7 @@ export default function Thesis() {
             lg:min-h-[760px]
           "
           style={{
-            clipPath:
-              "polygon(14% 0, 100% 0, 100% 100%, 0 100%)",
+            clipPath: "polygon(14% 0, 100% 0, 100% 100%, 0 100%)",
           }}
         >
           <Image
@@ -147,10 +133,9 @@ export default function Thesis() {
             className="
               absolute inset-0
               bg-gradient-to-r
-              from-zinc-950/35
-              via-zinc-950/5
+              from-bg/40
+              via-bg/5
               to-transparent
-              dark:from-zinc-950/60
             "
           />
 
@@ -159,7 +144,7 @@ export default function Thesis() {
             className="
               absolute inset-0
               bg-gradient-to-t
-              from-zinc-950/45
+              from-bg/50
               via-transparent
               to-transparent
             "
@@ -169,19 +154,19 @@ export default function Thesis() {
             <div
               className="
                 max-w-md rounded-2xl
-                border border-white/15
-                bg-black/30
+                border border-line/20
+                bg-surface/80
                 p-5
-                text-white
+                text-txt
                 shadow-2xl
                 backdrop-blur-xl
               "
             >
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/65">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-dim">
                 WebAiGen Perspective
               </p>
 
-              <p className="mt-2 text-lg font-semibold leading-7">
+              <p className="mt-2 text-lg font-semibold leading-7 text-txt">
                 Strategy, design, technology, and AI should work as one system—not
                 separate deliverables.
               </p>

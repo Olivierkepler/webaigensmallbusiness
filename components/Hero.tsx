@@ -66,45 +66,49 @@ export default function Hero() {
             </div>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4 lg:justify-start">
-              <a
-                href="#work"
-                className="
-                  w-full rounded-full bg-accent px-8 py-[15px]
-                  text-txt
-                  text-center text-[15px] font-bold text-accent-ink
-                  transition
-                  hover:-translate-y-0.5
-                  hover:shadow-lg hover:shadow-accent/20
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-accent
-                  focus-visible:ring-offset-2
-                  focus-visible:ring-offset-bg
-                  sm:w-auto
-                "
-              >
-                {t.hero.cta}
-              </a>
+             
 
               <a
                 href="/connect"
                 className="
-                  w-full rounded-full border border-line/15
-                  bg-surface px-8 py-[15px]
-                  text-center text-[15px] font-bold text-txt
-                  transition
-                  hover:-translate-y-0.5
-                  hover:border-accent-ink
-                  hover:bg-raised
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-accent
-                  focus-visible:ring-offset-2
-                  focus-visible:ring-offset-bg
-                  sm:w-auto
-                "
+                w-full rounded-full bg-accent px-8 py-[15px]
+                text-txt
+                text-center text-[15px] font-bold text-accent-ink
+                transition
+                hover:-translate-y-0.5
+                hover:shadow-lg hover:shadow-accent/20
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-accent
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-bg
+                sm:w-auto
+              "
+
+             
               >
                 Get in touch
+              </a>
+
+              <a
+                href="#work"
+                className="
+                w-full rounded-full border border-line/15
+                bg-surface px-8 py-[15px]
+                text-center text-[15px] font-bold text-txt
+                transition
+                hover:-translate-y-0.5
+                hover:border-accent-ink
+                hover:bg-raised
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-accent
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-bg
+                sm:w-auto
+              "
+              >
+                {t.hero.cta}
               </a>
             </div>
           </div>
