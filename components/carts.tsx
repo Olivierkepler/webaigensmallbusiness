@@ -59,7 +59,7 @@ const heroCards: HeroCard[] = [
     level: "Intermediate level",
     // href: `${COURSE_PATH}/neural-networks`,
     href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
-    image: "/images/technicians.jpg",
+    image: "/images/researcher.jpg",
   },
 ];
 
