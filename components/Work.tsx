@@ -6,27 +6,17 @@ import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 type LinkTarget = "_blank" | "_self" | "_parent" | "_top";
 
-type HeroCard = {
+type WorkProjectMeta = {
   slug: string;
-  title: string;
-  provider: string;
-  industry: string;
-  services: string;
-  badge: string;
   href: string;
   image: string;
   video?: string;
   target: LinkTarget;
 };
 
-const heroCards: HeroCard[] = [
+const workProjects: WorkProjectMeta[] = [
   {
     slug: "saskia-cleaning",
-    title: "Saskia Cleaning",
-    provider: "Featured Client",
-    industry: "Cleaning Services",
-    services: "Brand Strategy • Web Design • Development",
-    badge: "Website",
     href: "https://saskiaservices.com",
     image: "/images/saskia1.png",
     video: "/images/saskia.mp4",
@@ -34,11 +24,6 @@ const heroCards: HeroCard[] = [
   },
   {
     slug: "djador-family-store",
-    title: "DJ Ador Family Store",
-    provider: "Featured Client",
-    industry: "Retail & E-Commerce",
-    services: "Branding • E-Commerce • Custom Development",
-    badge: "E-Commerce",
     href: "https://www.djadorfamilystore.com/",
     image: "/images/djador.png",
     video: "/images/djador.mp4",
@@ -46,11 +31,6 @@ const heroCards: HeroCard[] = [
   },
   {
     slug: "clairvilx-construction",
-    title: "Clairvil X Construction",
-    provider: "Featured Client",
-    industry: "Construction & Renovation",
-    services: "Branding • Web Design • User Experience",
-    badge: "Construction",
     href: "https://clairvilxconstruction.com/",
     image: "/images/clairvilX.png",
     video: "/images/clairvilx.mp4",
@@ -58,11 +38,6 @@ const heroCards: HeroCard[] = [
   },
   {
     slug: "academy",
-    title: "WebAiGen Academy",
-    provider: "Professional Education",
-    industry: "AI & Technology Education",
-    services: "AI • Programming • Emerging Technologies",
-    badge: "Academy",
     href: "https://webaigenacademy.com",
     image: "/images/researcher.jpg",
     video: "/images/academy.mp4",
@@ -97,9 +72,15 @@ function ExternalLinkIcon() {
 export default function Work() {
   const { t } = useLanguage();
 
+  const cards = workProjects.flatMap((project) => {
+    const copy = t.workItems.find((item) => item.slug === project.slug);
+    if (!copy) return [];
+    return [{ ...project, ...copy }];
+  });
+
   return (
     <section id="work" className="pb-[110px]">
-      <div className="mx-auto max-w-[1200px] px-6">
+      <div className="mx-auto max-w-[1400px] px-6  py-20 ">
         <div className="mb-[18px] text-xs font-semibold uppercase tracking-[0.22em] text-dim">
           {t.work.eyebrow}
         </div>
@@ -113,8 +94,8 @@ export default function Work() {
         </p>
 
         <Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {heroCards.map((card) => (
+          <div className="mt-14 grid gap-8 md:grid-cols-2">
+            {cards.map((card) => (
               <a
                 key={card.slug}
                 href={card.href}
@@ -124,7 +105,10 @@ export default function Work() {
                     ? "noopener noreferrer"
                     : undefined
                 }
-                aria-label={`View ${card.title}`}
+                aria-label={t.work.viewProjectAria.replace(
+                  "{title}",
+                  card.title,
+                )}
                 className="
                   group relative overflow-hidden
                   rounded-card border border-line/10
@@ -213,7 +197,7 @@ export default function Work() {
 
                   <div className="relative mt-7">
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-dim">
-                      Services
+                      {t.work.servicesLabel}
                     </p>
 
                     <p className="mt-2 max-w-[46ch] text-[14.5px] leading-6 text-muted">
@@ -222,7 +206,7 @@ export default function Work() {
                   </div>
 
                   <div className="relative mt-auto flex items-center gap-2 pt-8 text-sm font-bold text-accent-ink">
-                    View project
+                    {t.work.viewProject}
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

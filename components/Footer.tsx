@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_25%,rgba(169,255,235,0.16),transparent_30%),linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.07)_50%,transparent_80%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-6">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-14">
           {/* Brand + contact */}
           <div className="max-w-md">

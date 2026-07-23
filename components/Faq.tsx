@@ -7,8 +7,8 @@ export default function Faq() {
   const { t } = useLanguage();
 
   return (
-    <section id="faq" className="pb-[110px]">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="faq" className="pb-[110px] ">
+      <div className="max-w-[1400px] mx-auto px-6">
         <h2 className="text-[clamp(30px,4.5vw,52px)] font-bold tracking-tight leading-[1.05]">
           {t.faq.title}
         </h2>

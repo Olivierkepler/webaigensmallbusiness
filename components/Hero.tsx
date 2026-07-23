@@ -16,7 +16,7 @@ export default function Hero() {
 
 
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_520px]">
           <div className="text-center lg:text-left">
           <h2 className="max-w-[560px] text-[52px] font-black italic leading-[0.9] tracking-tight sm:text-[60px]">

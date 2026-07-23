@@ -100,8 +100,8 @@ export function buildSearchIndex(t: Translations): SearchResult[] {
   t.workItems.forEach((w, i) => {
     items.push({
       id: `work-${i}`,
-      title: w.co,
-      subtitle: w.desc,
+      title: w.title,
+      subtitle: w.services,
       href: "#work",
       category: c.work,
     });

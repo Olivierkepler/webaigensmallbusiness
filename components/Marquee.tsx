@@ -8,7 +8,7 @@ export default function Marquee() {
   const doubled = [...partners, ...partners];
 
   return (
-    <section className="relative overflow-hidden bg-[#003334] py-[70px]">
+    <section className="relative overflow-hidden bg-[#003334] py-[70px] ">
       {/* Background Effects */}
       <div
         aria-hidden="true"
