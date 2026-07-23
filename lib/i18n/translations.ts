@@ -34,15 +34,18 @@ const en = {
     link: "Read more",
   },
   hero: {
-    title: "A Branding, Web & AI Growth Partner.",
+    eyebrow: "Brand Strategy • Web Engineering • AI Solutions • Academy",
+    title: "Where Brands, Websites, and AI Come Together.",
     description:
-      "We build modern digital experiences for startups, clinics, and local businesses across every medium — making your online presence",
-    compoundRevenue: "compound revenue",
-    descriptionEnd: "instead of leaking it.",
-    rating: "4.8/5.0 TOP RATED",
+      "WebAiGen helps startups, clinics, and local businesses strengthen their brands, build high-performing websites, adopt practical AI solutions, and develop future-ready skills through WebAiGen Academy.",
+    compoundRevenue: "build lasting digital momentum",
+    descriptionEnd:
+      "through strategic design, intelligent automation, and continuous learning.",
+    rating: "4.8/5.0 • TOP RATED",
     testimonial:
-      '"Bookings doubled the month our new site went live." — Saskia Cleaning',
-    cta: "See Our Work",
+      '"From our website to our AI workflows, WebAiGen became an extension of our team."',
+    cta: "Explore Our Services",
+    secondaryCta: "Explore the Academy",
   },
   stats: [
     {
@@ -290,15 +293,19 @@ const fr: typeof en = {
     link: "En savoir plus",
   },
   hero: {
-    title: "Partenaire de croissance en branding, web et IA.",
+    eyebrow:
+      "Stratégie de marque • Ingénierie web • Solutions IA • Académie",
+    title: "Là où les marques, le web et l’IA se rencontrent.",
     description:
-      "Nous créons des expériences numériques modernes pour les startups, cliniques et entreprises locales sur tous les supports — pour que votre présence en ligne",
-    compoundRevenue: "génère des revenus",
-    descriptionEnd: "au lieu de les perdre.",
-    rating: "4,8/5,0 MEILLEURE NOTE",
+      "WebAiGen aide les startups, les cliniques et les entreprises locales à renforcer leur marque, créer des sites web performants, adopter des solutions IA concrètes et développer des compétences d’avenir grâce à la WebAiGen Academy.",
+    compoundRevenue: "créer une croissance numérique durable",
+    descriptionEnd:
+      "grâce à un design stratégique, une automatisation intelligente et un apprentissage continu.",
+    rating: "4,8/5,0 • TRÈS BIEN NOTÉ",
     testimonial:
-      "« Les réservations ont doublé le mois où notre nouveau site est entré en ligne. » — Saskia Cleaning",
-    cta: "Voir nos réalisations",
+      "« De notre site web à nos workflows IA, WebAiGen est devenu une véritable extension de notre équipe. »",
+    cta: "Découvrir nos services",
+    secondaryCta: "Découvrir l’Académie",
   },
   stats: [
     {
@@ -546,15 +553,19 @@ const es: typeof en = {
     link: "Leer más",
   },
   hero: {
-    title: "Socio de crecimiento en branding, web e IA.",
+    eyebrow:
+      "Estrategia de marca • Ingeniería web • Soluciones de IA • Academia",
+    title: "Donde las marcas, la web y la IA se unen.",
     description:
-      "Creamos experiencias digitales modernas para startups, clínicas y negocios locales en todos los medios — para que tu presencia online",
-    compoundRevenue: "multiplique ingresos",
-    descriptionEnd: "en lugar de perderlos.",
-    rating: "4,8/5,0 MEJOR VALORADO",
+      "WebAiGen ayuda a startups, clínicas y negocios locales a fortalecer sus marcas, crear sitios web de alto rendimiento, adoptar soluciones prácticas de IA y desarrollar habilidades para el futuro mediante WebAiGen Academy.",
+    compoundRevenue: "crear un crecimiento digital sostenible",
+    descriptionEnd:
+      "mediante diseño estratégico, automatización inteligente y aprendizaje continuo.",
+    rating: "4,8/5,0 • EXCELENTE VALORACIÓN",
     testimonial:
-      '"Las reservas se duplicaron el mes en que lanzamos nuestro nuevo sitio." — Saskia Cleaning',
-    cta: "Ver nuestros proyectos",
+      '"Desde nuestro sitio web hasta nuestros flujos de IA, WebAiGen se convirtió en una extensión de nuestro equipo."',
+    cta: "Explorar nuestros servicios",
+    secondaryCta: "Explorar la Academia",
   },
   stats: [
     {

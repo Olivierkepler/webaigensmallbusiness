@@ -6,12 +6,15 @@ import HeroBackground from "./HeroBackground";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Carts } from "./carts";
 import Image from "next/image";
+import AIInnovationHero from "./AIInnovationHero";
 export default function Hero() {
   const { t } = useLanguage();
 
   return (
     <header className="relative isolate overflow-hidden bg-bg pt-20 pb-16 sm:pt-24 sm:pb-20 lg:pt-[100px] lg:pb-[90px]">
       {/* <HeroBackground /> */}
+
+
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_520px]">
