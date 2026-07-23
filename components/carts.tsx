@@ -28,8 +28,8 @@ const heroCards: HeroCard[] = [
     duration: "1 week to complete",
     level: "Introductory level",
     // href: `${COURSE_PATH}/introduction`,
-    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
-    image: "/images/technician2.jpeg",
+    href: "https://webaigenacademy.com",
+    image: "/images/nurses.jpg",
   },
   {
     slug: "decision-trees",
@@ -38,8 +38,8 @@ const heroCards: HeroCard[] = [
     duration: "2 weeks to complete",
     level: "Introductory level",
     // href: `${COURSE_PATH}/decision-trees`,
-    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
-    image: "/images/technicians.jpg",
+    href: "https://webaigenacademy.com",
+    image: "/images/doctors.jpg",
   },
   {
     slug: "random-forest",
@@ -48,7 +48,7 @@ const heroCards: HeroCard[] = [
     duration: "1 week to complete",
     level: "Intermediate level",
     // href: `${COURSE_PATH}/random-forest`,
-    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
+    href: "https://webaigenacademy.com",
     image: "/images/technician2.jpeg",
   },
   {
