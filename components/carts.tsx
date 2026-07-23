@@ -27,7 +27,8 @@ const heroCards: HeroCard[] = [
     provider: "WebAIGen Academy",
     duration: "1 week to complete",
     level: "Introductory level",
-    href: `${COURSE_PATH}/introduction`,
+    // href: `${COURSE_PATH}/introduction`,
+    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
     image: "/images/technician2.jpeg",
   },
   {
@@ -36,7 +37,8 @@ const heroCards: HeroCard[] = [
     provider: "WebAIGen Academy",
     duration: "2 weeks to complete",
     level: "Introductory level",
-    href: `${COURSE_PATH}/decision-trees`,
+    // href: `${COURSE_PATH}/decision-trees`,
+    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
     image: "/images/technicians.jpg",
   },
   {
@@ -45,7 +47,8 @@ const heroCards: HeroCard[] = [
     provider: "WebAIGen Academy",
     duration: "1 week to complete",
     level: "Intermediate level",
-    href: `${COURSE_PATH}/random-forest`,
+    // href: `${COURSE_PATH}/random-forest`,
+    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
     image: "/images/technician2.jpeg",
   },
   {
@@ -54,7 +57,8 @@ const heroCards: HeroCard[] = [
     provider: "WebAIGen Academy",
     duration: "2 weeks to complete",
     level: "Intermediate level",
-    href: `${COURSE_PATH}/neural-networks`,
+    // href: `${COURSE_PATH}/neural-networks`,
+    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
     image: "/images/technicians.jpg",
   },
 ];
