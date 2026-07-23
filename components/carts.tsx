@@ -18,50 +18,59 @@ type HeroCard = {
   level: string;
   href: string;
   image: string;
-};
+  video: string;
+  target: "_blank" | "_self" | "_parent" | "_top";   
+    };
 
-const heroCards: HeroCard[] = [
-  {
-    slug: "introduction",
-    title: "Introduction to Machine Learning",
-    provider: "WebAIGen Academy",
-    duration: "1 week to complete",
-    level: "Introductory level",
-    // href: `${COURSE_PATH}/introduction`,
-    href: "https://webaigenacademy.com",
-    image: "/images/nurses.jpg",
-  },
-  {
-    slug: "decision-trees",
-    title: "Decision Trees: Splits, Impurity, and Pruning",
-    provider: "WebAIGen Academy",
-    duration: "2 weeks to complete",
-    level: "Introductory level",
-    // href: `${COURSE_PATH}/decision-trees`,
-    href: "https://webaigenacademy.com",
-    image: "/images/doctors.jpg",
-  },
-  {
-    slug: "random-forest",
-    title: "Random Forest: Ensembles That Generalize",
-    provider: "WebAIGen Academy",
-    duration: "1 week to complete",
-    level: "Intermediate level",
-    // href: `${COURSE_PATH}/random-forest`,
-    href: "https://webaigenacademy.com",
-    image: "/images/technician2.jpeg",
-  },
-  {
-    slug: "neural-networks",
-    title: "Neural Networks: Foundations of Deep Learning",
-    provider: "WebAIGen Academy",
-    duration: "2 weeks to complete",
-    level: "Intermediate level",
-    // href: `${COURSE_PATH}/neural-networks`,
-    href: "https://webaigenacademy.com/learn/machine-learning#syllabus",
-    image: "/images/researcher.jpg",
-  },
-];
+    const heroCards: HeroCard[] = [
+        {
+          slug: "saskia-cleaning",
+          title: "Saskia Cleaning",
+          provider: " Featured Cleaning Business",
+          duration: "Cleaning Services",
+          level: "Branding • Web Design • Development",
+          href: "https://saskiaservices.com",
+          image: "/images/saskia1.png",
+          video: "/images/saskia.mp4",
+          target: "_blank",
+        },
+      
+        {
+            slug: "djador-family-store",
+            title: "DJ Ador Family Store",
+            provider: "Featured E-Commerce Business",
+            duration: "Retail & E-Commerce",
+            level: "Branding • E-Commerce • Web Development",
+            href: "https://www.djadorfamilystore.com/",
+            image: "/images/djador.png",
+            video: "/images/djador.mp4",
+            target: "_blank",
+          },
+      
+       
+      
+        {
+          slug: "academy",
+          title: "WebAiGen Academy",
+          provider: "Professional Education",
+          duration: "Self-paced Learning",
+          level: "AI • Programming • Technology",
+          href: "https://webaigenacademy.com",
+          image: "/images/researcher.jpg",
+          video: "/images/academy.mp4",
+          target: "_blank",
+        }, {
+            slug: "clairvilx-construction",
+            title: "Clairvil X Construction — A Premium Digital Experience for Luxury Remodeling",
+            provider: "Featured Construction Business",
+            duration: "Residential Construction",
+            level: "Website • Branding • User Experience",
+            href: "https://clairvilxconstruction.com/",
+            image: "/images/clairvilX.png",
+            video: "/images/clairvilx.mp4",
+            target: "_blank",
+          },
+      ];
 
 function ClockIcon() {
   return (
@@ -292,6 +301,12 @@ export function Carts() {
             <MotionLink
               key={card.slug}
               href={card.href}
+              target={card.target}
+              rel={
+                card.target === "_blank"
+                  ? "noopener noreferrer"
+                  : undefined
+              }
               initial={
                 prefersReducedMotion
                   ? false
