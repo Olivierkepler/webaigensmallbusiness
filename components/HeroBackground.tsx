@@ -197,7 +197,7 @@ export default function HeroBackground({
       </div>
 
       {/* Grid pattern */}
-      <div className="hero-bg-grid absolute inset-0 bg-[linear-gradient(to_right,rgb(var(--line)/0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgb(var(--line)/0.12)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30" />
+      {/* <div className="hero-bg-grid absolute inset-0 bg-[linear-gradient(to_right,rgb(var(--line)/0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgb(var(--line)/0.12)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30" /> */}
 
       {/* Teal glow */}
       <div className="hero-bg-glow-teal absolute left-[-10%] top-[5%] h-[550px] w-[550px] rounded-full bg-[#0E5C58]/5 blur-[120px]" />

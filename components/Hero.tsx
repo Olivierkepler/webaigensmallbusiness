@@ -4,6 +4,7 @@ import OrangeLogo from "./OrangeLogo";
 import Reveal from "./Reveal";
 import HeroBackground from "./HeroBackground";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { Carts } from "./carts";
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -100,9 +101,12 @@ export default function Hero() {
             <div className="flex w-full max-w-[460px] justify-end opacity-95 xl:max-w-[520px]">
               <OrangeLogo size={400} />
             </div>
+
+
+       
           </div>
         </div>
-
+{/* 
         <Reveal>
           <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card bg-line/10 sm:mt-9 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
             {t.stats.map((stat) => (
@@ -124,7 +128,12 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </Reveal>
+
+        
+        </Reveal> */}
+       <div className="mt-20"  >
+       <Carts />
+       </div>
       </div>
     </header>
   );
