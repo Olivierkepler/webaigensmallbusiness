@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import HeroBackground from "./HeroBackground";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Carts } from "./carts";
-
+import Image from "next/image";
 export default function Hero() {
   const { t } = useLanguage();
 
@@ -43,9 +43,18 @@ export default function Hero() {
               </div>
 
               <div className="flex w-full items-center justify-center gap-3 rounded-full border border-line/15 bg-surface py-2 pl-2 pr-4 text-[13px] text-muted shadow-sm sm:w-auto sm:justify-start sm:pr-[18px]">
-                <span className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-full bg-raised text-xs font-bold text-txt">
-                  SC
+                <span className="grid h-[64px] w-[64px] shrink-0 place-items-center rounded-full bg-raised text-base font-bold text-txt">
+                  {/* SC */}
+                  <Image
+                    src="/images/woman.png"
+                    alt="Star"
+                    width={120}
+                    height={120}
+                    className="rounded-full"
+                  />
                 </span>
+          
+          
 
                 <span className="line-clamp-2 text-left">
                   {t.hero.testimonial}
