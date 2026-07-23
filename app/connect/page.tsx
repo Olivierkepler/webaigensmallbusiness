@@ -128,16 +128,17 @@ export default function ConnectPage() {
                   </a> */}
 
 <a
-                    href="https://calendly.com/webaigen/intro"
-                    className="group mt-4 inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-[#0a0a0a] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20"
-                  >
-                    Book a call
-                    <ArrowUpRight
-                      size={15}
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
+  href="mailto:webaigen3@gmail.com"
+  className="group mt-4 inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-[#0a0a0a] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20"
+>
+  Email us 
+  <ArrowUpRight
+    size={15}
+    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    aria-hidden="true"
+  />
+</a>
+         
                 </div>
               </div>
             </div>
