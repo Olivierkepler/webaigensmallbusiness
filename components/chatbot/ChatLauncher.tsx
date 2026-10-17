@@ -1,71 +1,69 @@
+
 "use client";
+
+import type { RefObject } from "react";
 
 import BlinkingRobot from "../BlinkingRobot";
 import { WifiAnimated } from "./WifiAnimated";
+
 type ChatLauncherProps = {
   onOpen: () => void;
-  launcherRef: React.RefObject<HTMLButtonElement>;
+  launcherRef: RefObject<HTMLButtonElement>;
 };
 
-export default function ChatLauncher({ onOpen, launcherRef }: ChatLauncherProps) {
+export default function ChatLauncher({
+  onOpen,
+  launcherRef,
+}: ChatLauncherProps) {
   return (
     <button
       ref={launcherRef}
       type="button"
       onClick={onOpen}
-      aria-label="Open WebAiGen assistant chat"
+      aria-label="Open WebAIgen assistant chat"
       aria-haspopup="dialog"
+      title="Chat with WebAIgen"
       className="
         group fixed z-50
-        bottom-[max(0.75rem,env(safe-area-inset-bottom))]
-        right-[max(0.75rem,env(safe-area-inset-right))]
-        flex items-center gap-2.5
+        bottom-[max(1rem,env(safe-area-inset-bottom))]
+        right-[max(1rem,env(safe-area-inset-right))]
+        flex h-[72px] w-[72px]
+        items-center justify-center
         rounded-full
-        outline-none
-        transition duration-300
-        motion-reduce:transition-none
-        hover:scale-[1.02]
+        bg-transparent
+        transition-transform duration-200
+        hover:scale-105
         active:scale-95
-       
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-accent
+        focus-visible:ring-offset-2
+        focus-visible:ring-offset-bg
+        motion-reduce:transform-none
+        motion-reduce:transition-none
         sm:bottom-[max(1.25rem,env(safe-area-inset-bottom))]
         sm:right-[max(1.25rem,env(safe-area-inset-right))]
+        sm:h-[84px] sm:w-[84px]
       "
     >
+      {/* Soft glow */}
       <span
-        className="
-          pointer-events-none absolute
-          h-16 w-16 rounded-full
-          bg-accent/20 blur-2xl
-          motion-reduce:hidden
-          sm:h-20 sm:w-20
-        "
         aria-hidden="true"
-      />
-{/* 
-      <span
         className="
-          relative hidden items-center
-          rounded-full border border-line/15
-          bg-surface/95 px-3.5 py-2
-          text-sm font-semibold text-txt
-          shadow-lg shadow-black/10
-          backdrop-blur-sm
-          transition
-          group-hover:border-[#0F766E]/40
-          group-hover:text-[#0F766E]
-          md:inline-flex
+          pointer-events-none absolute inset-1
+          rounded-full bg-accent/15
+          blur-xl
+          motion-reduce:hidden
         "
-      >
-        Chat with us
-      </span> */}
+      />
 
-      <span className="relative block scale-[0.62] sm:scale-[0.78] md:scale-90">
-        <BlinkingRobot size={120} />
+      {/* Animated robot */}
+      <span className="relative flex items-center justify-center">
+        <BlinkingRobot size={68} />
       </span>
 
-     {/* add a badge online */}
-<WifiAnimated />
-
+      {/* Connection animation */}
+      <WifiAnimated />
     </button>
   );
 }

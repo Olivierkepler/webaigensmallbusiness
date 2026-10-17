@@ -1,7 +1,8 @@
+
 "use client";
 
 import Image from "next/image";
-import { motion, Transition } from "framer-motion";
+import { motion, type Transition } from "framer-motion";
 
 type BlinkingRobotProps = {
   image?: string;
@@ -21,7 +22,7 @@ export default function BlinkingRobot({
     scaleY: [1, 1, 1, 0.06, 1],
   };
 
-  const blinkTransition = {
+  const blinkTransition: Transition = {
     duration: 4,
     repeat: Infinity,
     ease: "easeInOut",
@@ -54,7 +55,7 @@ export default function BlinkingRobot({
           transformOrigin: "center",
         }}
         animate={blinkAnimation}
-        transition={blinkTransition as Transition<any>}
+        transition={blinkTransition}
       />
 
       <motion.div
@@ -67,7 +68,7 @@ export default function BlinkingRobot({
           transformOrigin: "center",
         }}
         animate={blinkAnimation}
-        transition={blinkTransition as Transition<any>}
+        transition={blinkTransition}
       />
     </div>
   );

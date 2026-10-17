@@ -1,32 +1,42 @@
-import AnnounceBar from "@/components/AnnounceBar";
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Thesis from "@/components/Thesis";
-import Proof from "@/components/Proof";
 import Method from "@/components/Method";
+import Thesis from "@/components/Thesis";
 import Work from "@/components/Work";
+import Proof from "@/components/Proof";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/chabot";
+
 export default function Home() {
   return (
     <>
-      <AnnounceBar />
       <Navbar />
-      <main>
+
+      <main id="main-content">
+        {/* Hero */}
         <Hero />
-        <Marquee />
+
+        {/* Services */}
         <Method />
+
+        {/* Development Process */}
         <Thesis />
+
+        {/* Selected Work */}
         <Work />
+
+        {/* About WebAIgen */}
         <Proof />
-       
-       
+
+        {/* Frequently Asked Questions */}
         <Faq />
       </main>
-      <Chatbot />
+
       <Footer />
+
+      <Chatbot />
     </>
   );
 }

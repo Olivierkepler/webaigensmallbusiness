@@ -1,61 +1,102 @@
+
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, Search, X } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
 import NavbarSearch from "./NavbarSearch";
-import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import NodeALogo from "./logo";
+
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 export default function Navbar() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(
+    null
+  );
 
   const drawerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  const links = [
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const navLinks = [
     {
-      href: "#method",
+      href: "/#method",
       label: t.nav.services,
     },
     {
-      href: "#thesis",
-      label: t.nav.industries,
-    },
-    {
-      href: "#work",
+      href: "/#work",
       label: t.nav.work,
     },
     {
-      href: "#proof",
+      href: "/#thesis",
+      label: "Our Process",
+    },
+    {
+      href: "/about",
       label: t.nav.about,
     },
     {
-      href: "#faq",
+      href: "/#faq",
       label: t.nav.faq,
     },
   ];
 
-  const closeMenu = useCallback(() => setIsOpen(false), []);
-
+  // Track navbar scroll position.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
+  // Highlight the active homepage section.
   useEffect(() => {
-    const sections = links
-      .map((l) => document.querySelector<HTMLElement>(l.href))
-      .filter((el): el is HTMLElement => Boolean(el));
+    if (pathname !== "/") {
+      return;
+    }
+
+    const sectionIds = [
+      "method",
+      "work",
+      "thesis",
+      "faq",
+    ];
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(
+        (section): section is HTMLElement =>
+          Boolean(section)
+      );
 
     if (!sections.length) return;
 
@@ -63,352 +104,447 @@ export default function Navbar() {
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          .sort(
+            (a, b) =>
+              b.intersectionRatio -
+              a.intersectionRatio
+          )[0];
 
         if (visible) {
           setActiveId(`#${visible.target.id}`);
         }
       },
       {
-        rootMargin: "-35% 0px -55% 0px",
+        rootMargin: "-25% 0px -60% 0px",
         threshold: [0, 0.25, 0.5],
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
 
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [t]);
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname]);
 
+  // Close the mobile menu when navigating.
+  useEffect(() => {
+    closeMenu();
+  }, [pathname, closeMenu]);
+
+  // Keep the hidden mobile drawer out of keyboard navigation.
+  useEffect(() => {
+    if (drawerRef.current) {
+      drawerRef.current.inert = !isOpen;
+    }
+  }, [isOpen]);
+
+  // Mobile drawer keyboard and scroll handling.
   useEffect(() => {
     if (!isOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const menuButton = menuButtonRef.current;
+
+    const previousOverflow =
+      document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") closeMenu();
-    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        return;
+      }
 
-    document.addEventListener("keydown", onKeyDown);
+      if (event.key === "Tab") {
+        const drawer = drawerRef.current;
+
+        if (!drawer) return;
+
+        const focusable = Array.from(
+          drawer.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter(
+          (element) =>
+            element.getClientRects().length > 0
+        );
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (
+          event.shiftKey &&
+          document.activeElement === first
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === last
+        ) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
 
     drawerRef.current
       ?.querySelector<HTMLElement>("button, a, input")
       ?.focus({ preventScroll: true });
 
     return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
-      menuButtonRef.current?.focus({ preventScroll: true });
+      document.body.style.overflow =
+        previousOverflow;
+
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+
+      menuButton?.focus({
+        preventScroll: true,
+      });
     };
   }, [isOpen, closeMenu]);
+
+  const isLinkActive = (href: string) => {
+    if (href === "/about") {
+      return pathname === "/about";
+    }
+
+    if (pathname !== "/") {
+      return false;
+    }
+
+    return activeId === `#${href.split("#")[1]}`;
+  };
 
   return (
     <>
       <nav
+        aria-label="Main navigation"
         className={`
-          sticky top-0 py-4  z-50 w-full transition-all duration-500
-          motion-reduce:transition-none bg-surface/60
+          sticky top-0 z-50 w-full
+          border-b transition-all duration-300
+          motion-reduce:transition-none
           ${
             scrolled
-              ? "bg-bg/70  backdrop-blur-2xl backdrop-saturate-150 shadow-[0_12px_40px_-28px_rgba(0,0,0,0.45)]"
-              : "bg-bg/0 "
+              ? "border-line/20 bg-bg/95 shadow-sm backdrop-blur-xl"
+              : "border-line/10 bg-bg/95"
           }
         `}
-        style={{ transitionTimingFunction: EASE }}
+        style={{
+          transitionTimingFunction: EASE,
+        }}
       >
         <div
           className={`
-            max-w-full mx-auto px-10 sm:px-20 flex items-center justify-between gap-4
-      
-            transition-[height] duration-500 motion-reduce:transition-none
-            ${scrolled ? "h-[62px]" : "h-[76px]"}
+            mx-auto flex w-full max-w-[1440px]
+            items-center justify-between gap-3
+            px-5 transition-[height] duration-300
+            sm:px-6 lg:px-8
+            ${
+              scrolled
+                ? "h-[66px]"
+                : "h-[72px]"
+            }
           `}
-          style={{ transitionTimingFunction: EASE }}
         >
-          <a
+          {/* BRAND */}
+          <Link
             href="/"
             aria-label={t.nav.logoAlt}
-            className=" 
-              group shrink-0 flex items-center gap-2.5 rounded-full
-              focus-visible:outline-none focus-visible:ring-2
-              focus-visible:ring-accent/60 focus-visible:ring-offset-2
-              focus-visible:ring-offset-bg
+            className="
+              group flex min-w-0 shrink-0
+              items-center gap-2.5 rounded-md
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-accent
             "
           >
-            <span className="relative grid place-items-center">
-              <span className="absolute inset-0 rounded-full bg-accent/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <NodeALogo size={44} />
+            <span className="relative grid shrink-0 place-items-center">
+              <NodeALogo size={36} />
             </span>
 
-            <div className="flex flex-col items-center justify-center gap-1">
-            <span className="text-[24px] font-black italic leading-[0.9] tracking-tight ">
-        
-              
-        Web
-        <span className="text-accent">Ai</span>
-        Gen
-      </span>
-      <span className="text-[16px] font-normal leading-[0.9] tracking-tight ">AI Agentic Platform</span>
+            <span className="flex min-w-0 flex-col gap-1">
+              <span className="whitespace-nowrap text-[20px] font-extrabold leading-none tracking-[-0.04em] text-txt">
+                Web
+                <span className="text-accent-ink">
+                  AI
+                </span>
+                gen
+              </span>
 
-            </div>
-            
-                </a>
+              <span className="whitespace-nowrap text-[9px] font-medium uppercase leading-tight tracking-[0.06em] text-muted">
+                AI & Software Engineering
+              </span>
+            </span>
+          </Link>
 
-          <div className="hidden lg:flex items-center rounded-full border border-line/10 bg-surface/50 backdrop-blur-xl p-1 shadow-sm">
-            {links.map((link) => {
-              const isActive = activeId === link.href;
+          {/* DESKTOP NAVIGATION */}
+          <div className="hidden items-center gap-0.5 xl:flex">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.href);
 
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  aria-current={isActive ? "page" : undefined}
+                  aria-current={
+                    active ? "page" : undefined
+                  }
                   className={`
-                    relative rounded-full px-4 py-2 text-[13.5px] font-medium
-                    transition-all duration-300
+                    whitespace-nowrap rounded-md
+                    px-3 py-2 text-[13px]
+                    font-medium transition-colors
+                    duration-200
                     ${
-                      isActive
-                        ? "text-bg"
-                        : "text-muted hover:text-txt hover:bg-raised/70"
+                      active
+                        ? "bg-raised text-txt"
+                        : "text-muted hover:bg-raised hover:text-txt"
                     }
                   `}
                 >
-                  {isActive && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full bg-txt shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)]"
-                    />
-                  )}
-
-                  <span className="relative z-10">{link.label}</span>
-                </a>
+                  {link.label}
+                </Link>
               );
             })}
           </div>
 
-          <div className="hidden md:block flex-1 max-w-[250px]">
-            <NavbarSearch />
-          </div>
+          {/* DESKTOP CONTROLS */}
+          <div className="hidden shrink-0 items-center gap-2 md:flex">
+            <div className="hidden w-[160px] 2xl:block">
+              <NavbarSearch />
+            </div>
 
-          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <LanguageToggle />
+
             <ThemeToggle />
 
-            <a
+            <Link
               href="/connect"
               className="
-                group relative inline-flex items-center justify-center gap-1.5
-                overflow-hidden rounded-full bg-txt text-bg font-semibold text-sm
-                pl-5 pr-4 py-2.5 transition-all duration-300
-                hover:-translate-y-px hover:shadow-[0_16px_30px_-18px_rgba(0,0,0,0.55)]
-                active:translate-y-0 focus-visible:outline-none focus-visible:ring-2
-                focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg
+                group inline-flex min-h-10
+                shrink-0 items-center
+                justify-center gap-1.5
+                whitespace-nowrap rounded-full
+                bg-accent px-4 py-2
+                text-[12px] font-semibold
+                text-[#0a0a0a]
+                transition-all duration-200
+                hover:-translate-y-0.5
+                hover:shadow-md
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-accent
+                motion-reduce:transform-none
               "
             >
-              <span className="absolute inset-0 bg-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-              <span className="relative z-10">{t.nav.cta}</span>
+              Discuss a Project
 
               <ArrowUpRight
                 size={15}
-                strokeWidth={2.25}
                 aria-hidden="true"
-                className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="
+                  transition-transform
+                  group-hover:translate-x-0.5
+                  group-hover:-translate-y-0.5
+                "
               />
-            </a>
+            </Link>
           </div>
 
+          {/* MOBILE / TABLET MENU BUTTON */}
           <button
             ref={menuButtonRef}
             type="button"
             onClick={() => setIsOpen(true)}
-            aria-label="Open menu"
+            aria-label="Open navigation menu"
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
             className="
-              md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full
-              border border-line/15 bg-surface/80 backdrop-blur-xl text-txt
-              transition-all duration-300 hover:border-accent hover:bg-accent/10
-              active:scale-95 focus-visible:outline-none focus-visible:ring-2
-              focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg
+              inline-flex h-10 w-10
+              shrink-0 items-center
+              justify-center rounded-full
+              border border-line/20
+              bg-surface text-txt
+              transition-colors
+              hover:bg-raised
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-accent
+              xl:hidden
             "
           >
-            <Menu size={22} strokeWidth={2} />
+            <Menu size={20} aria-hidden="true" />
           </button>
         </div>
       </nav>
 
-      <div
-        onClick={closeMenu}
-        aria-hidden="true"
-        className={`
-          fixed inset-0 z-[60] md:hidden bg-black/50 backdrop-blur-sm
-          transition-opacity duration-500 motion-reduce:transition-none
-          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
-        `}
-        style={{ transitionTimingFunction: EASE }}
-      />
+      {/* MOBILE BACKDROP */}
+      {isOpen && (
+        <div
+          onClick={closeMenu}
+          aria-hidden="true"
+          className="
+            fixed inset-0 z-[60]
+            bg-black/50 backdrop-blur-sm
+            xl:hidden
+          "
+        />
+      )}
 
+      {/* MOBILE / TABLET DRAWER */}
       <aside
         ref={drawerRef}
         id="mobile-nav"
         role="dialog"
-        aria-modal="true"
+        aria-modal={isOpen ? true : undefined}
         aria-label="Navigation menu"
         aria-hidden={!isOpen}
         className={`
-          fixed top-0 right-0 z-[70] h-dvh w-[86%] max-w-[380px]
-          border-l border-line/10 bg-bg/95 backdrop-blur-2xl
-          shadow-[-30px_0_80px_-28px_rgba(0,0,0,0.55)]
-          md:hidden transition-transform duration-500 will-change-transform
+          fixed right-0 top-0 z-[70]
+          flex h-dvh w-[88%]
+          max-w-[360px] flex-col
+          border-l border-line/20
+          bg-bg shadow-2xl
+          transition-transform duration-300
           motion-reduce:transition-none
-          ${isOpen ? "translate-x-0" : "translate-x-full"}
+          xl:hidden
+          ${
+            isOpen
+              ? "translate-x-0"
+              : "translate-x-full"
+          }
         `}
-        style={{ transitionTimingFunction: EASE }}
+        style={{
+          transitionTimingFunction: EASE,
+        }}
       >
-        <div className="relative h-full overflow-hidden">
-          <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full bg-accent/15 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-20 -left-28 h-64 w-64 rounded-full bg-txt/10 blur-3xl" />
+        {/* DRAWER HEADER */}
+        <div className="flex items-center justify-between border-b border-line/20 px-5 py-4">
+          <Link
+            href="/"
+            onClick={closeMenu}
+            className="flex items-center gap-2.5"
+          >
+            <NodeALogo size={32} />
 
-          <div className="relative h-full flex flex-col px-6 pt-5 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-            <div className="flex items-center justify-between">
-              <a
-                href="/"
-                onClick={closeMenu}
-                aria-label={t.nav.logoAlt}
-                className="
-                  flex items-center gap-2.5 rounded-full
-                  focus-visible:outline-none focus-visible:ring-2
-                  focus-visible:ring-accent/60
-                "
-              >
-                <NodeALogo size={36} />
+            <span className="text-[18px] font-bold tracking-[-0.03em] text-txt">
+              Web
+              <span className="text-accent-ink">
+                AI
+              </span>
+              gen
+            </span>
+          </Link>
 
-                <span className="text-lg font-bold tracking-[-0.03em] text-txt leading-none">
-                  Web<span className="text-accent">Ai</span>Gen
-                </span>
-              </a>
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close navigation menu"
+            className="
+              flex h-10 w-10
+              items-center justify-center
+              rounded-full
+              border border-line/20
+              bg-surface text-txt
+              transition-colors
+              hover:bg-raised
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-accent
+            "
+          >
+            <X size={19} aria-hidden="true" />
+          </button>
+        </div>
 
-              <button
-                type="button"
-                onClick={closeMenu}
-                aria-label="Close menu"
-                className="
-                  inline-flex h-11 w-11 items-center justify-center rounded-full
-                  border border-line/15 bg-surface/80 text-txt backdrop-blur-xl
-                  transition-all duration-300 hover:border-accent hover:bg-accent/10
-                  active:scale-95 focus-visible:outline-none focus-visible:ring-2
-                  focus-visible:ring-accent/60
-                "
-              >
-                <X size={22} strokeWidth={2} />
-              </button>
-            </div>
+        {/* DRAWER CONTENT */}
+        <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pb-5">
+          <div className="py-5">
+            <NavbarSearch />
+          </div>
 
-            <div
-              className={`
-                mt-8 transition-all duration-500
-                ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
-              `}
-              style={{
-                transitionTimingFunction: EASE,
-                transitionDelay: isOpen ? "120ms" : "0ms",
-              }}
-            >
-              <NavbarSearch />
-            </div>
+          <nav
+            aria-label="Mobile navigation"
+            className="flex flex-col gap-1"
+          >
+            {navLinks.map((link, index) => {
+              const active = isLinkActive(link.href);
 
-            <nav className="mt-8 flex flex-col gap-2" aria-label="Primary">
-              {links.map((link, index) => {
-                const isActive = activeId === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  aria-current={
+                    active ? "page" : undefined
+                  }
+                  className={`
+                    flex items-center
+                    justify-between rounded-lg
+                    px-3 py-3
+                    text-[14px] font-medium
+                    transition-colors
+                    ${
+                      active
+                        ? "bg-surface text-txt"
+                        : "text-muted hover:bg-surface hover:text-txt"
+                    }
+                  `}
+                >
+                  <span>{link.label}</span>
 
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href} 
-                    onClick={closeMenu}
-                    className={`
-                      group relative overflow-hidden rounded-2xl px-4 py-4 text-[15.5px]
-                      font-semibold transition-all duration-500
-                      hover:bg-surface/80
-                      ${
-                        isActive
-                          ? "bg-surface text-txt border border-line/10"
-                          : "text-muted hover:text-txt"
-                      }
-                      ${
-                        isOpen
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 translate-x-6"
-                      }
-                    `}
-                    style={{
-                      transitionTimingFunction: EASE,
-                      transitionDelay: isOpen
-                        ? `${160 + index * 55}ms`
-                        : "0ms",
-                    }}
-                  >
-                    <span className="relative z-10">{link.label}</span>
+                  <span className="text-[11px] font-medium text-dim">
+                    {String(index + 1).padStart(
+                      2,
+                      "0"
+                    )}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
 
-                    <ArrowUpRight
-                      size={16}
-                      strokeWidth={2.2}
-                      aria-hidden="true"
-                      className="
-                        absolute right-4 top-1/2 -translate-y-1/2 opacity-0
-                        transition-all duration-300 group-hover:opacity-100
-                        group-hover:translate-x-0.5 group-hover:-translate-y-[55%]
-                      "
-                    />
-                  </a>
-                );
-              })}
-            </nav>
-
-            <div
-              className={`
-                mt-auto pt-8 flex items-center justify-between gap-3
-                transition-all duration-500
-                ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
-              `}
-              style={{
-                transitionTimingFunction: EASE,
-                transitionDelay: isOpen ? "430ms" : "0ms",
-              }}
-            >
+          {/* DRAWER FOOTER */}
+          <div className="mt-auto pt-7">
+            <div className="mb-5 flex items-center gap-4 border-t border-line/20 pt-5">
               <LanguageToggle />
               <ThemeToggle />
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              href="/connect"
               onClick={closeMenu}
-              className={`
-                group mt-6 inline-flex w-full items-center justify-center gap-1.5
-                rounded-full bg-txt text-bg px-5 py-3.5 text-sm font-bold
-                transition-all duration-500 hover:bg-accent hover:text-[#0a0a0a]
-                active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2
-                focus-visible:ring-accent/60 focus-visible:ring-offset-2
-                focus-visible:ring-offset-bg
-                ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
-              `}
-              style={{
-                transitionTimingFunction: EASE,
-                transitionDelay: isOpen ? "500ms" : "0ms",
-              }}
+              className="
+                inline-flex min-h-11 w-full
+                items-center justify-center
+                gap-2 rounded-full
+                bg-accent px-5 py-2.5
+                text-[13px] font-semibold
+                text-[#0a0a0a]
+                transition-colors
+                hover:brightness-95
+              "
             >
-              {t.nav.cta}
+              Discuss a Project
 
               <ArrowUpRight
                 size={16}
-                strokeWidth={2.25}
                 aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
-            </a>
+            </Link>
           </div>
         </div>
       </aside>
