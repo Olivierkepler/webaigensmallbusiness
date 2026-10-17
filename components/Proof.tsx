@@ -1,56 +1,166 @@
+
 "use client";
 
-import Reveal from "./Reveal";
-import { useLanguage } from "@/lib/i18n/LanguageProvider";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "./Reveal";
+
+const principles = [
+  {
+    number: "01",
+    title: "Clear Communication",
+    description:
+      "Straightforward discussions about requirements, progress, and technical decisions throughout the project.",
+  },
+  {
+    number: "02",
+    title: "Thoughtful Engineering",
+    description:
+      "Choosing technologies and approaches based on project requirements rather than unnecessary complexity.",
+  },
+  {
+    number: "03",
+    title: "Built to Last",
+    description:
+      "Attention to code quality, performance, and maintainability beyond the initial launch.",
+  },
+];
 
 export default function Proof() {
-  const { t } = useLanguage();
-  const doubled = [...t.proofItems, ...t.proofItems];
-
   return (
-    <section id="proof" className="pb-[110px]">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-xs tracking-[0.22em] uppercase text-dim font-semibold mb-[18px]">
-          {t.proof.eyebrow}
-        </div>
-        <h2 className="text-[clamp(32px,4vw,54px)] font-normal tracking-[-0.045em] leading-[1.07] max-w-[15ch]">
-          {t.proof.title}
-        </h2>
-        <p className="text-muted text-[clamp(16px,1.6vw,19px)] max-w-[720px] mt-[22px]">
-          {t.proof.description}
-        </p>
-        {/* Professional About Link Button */}
-        <div className="mt-8">
-          <Link
-            href="/about"
-            className="inline-flex items-center px-6 py-3 bg-accent-ink text-white font-semibold rounded-full shadow-md border border-accent-ink hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition-colors text-base gap-2"
-            aria-label="Learn more about us"
-          >
-            Learn more about us
-            <ArrowUpRight size={20} strokeWidth={2.2} className="ml-1" />
-          </Link>
+    <section
+      id="proof"
+      aria-labelledby="about-preview-heading"
+      className="
+        scroll-mt-24
+        border-y border-line/15
+        bg-surface/60
+        py-14 text-txt
+        sm:py-16 lg:py-20
+      "
+    >
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-8">
+        <div
+          className="
+            grid gap-9
+            lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]
+            lg:items-start lg:gap-14
+          "
+        >
+          {/* LEFT: COMPANY INTRODUCTION */}
+          <Reveal>
+            <div className="max-w-[590px]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-ink">
+                About WebAIgen
+              </p>
+
+              <h2
+                id="about-preview-heading"
+                className="
+                  mt-4 max-w-[560px]
+                  text-[28px]
+                  font-semibold
+                  leading-[1.25]
+                  tracking-[-0.03em]
+                  text-txt
+                  sm:text-[32px]
+                "
+              >
+                A team focused on practical software engineering.
+              </h2>
+
+              <p className="mt-4 max-w-[550px] text-[14px] leading-[1.8] text-muted">
+                WebAIgen is a Boston-based AI and software
+                engineering company. Our team brings together
+                research, software development, artificial
+                intelligence, and web design to develop
+                applications for businesses.
+              </p>
+
+              <p className="mt-3 max-w-[550px] text-[14px] leading-[1.8] text-muted">
+                We work with clients to understand their
+                requirements, evaluate technical approaches,
+                and build software that is practical to
+                use and maintain.
+              </p>
+
+              <Link
+                href="/about"
+                className="
+                  group mt-6 inline-flex
+                  w-fit items-center gap-2
+                  border-b border-accent-ink/40
+                  pb-1 text-[13px]
+                  font-semibold text-txt
+                  transition-colors
+                  hover:border-accent-ink
+                  hover:text-accent-ink
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
+                "
+              >
+                Learn More About WebAIgen
+
+                <ArrowUpRight
+                  size={15}
+                  aria-hidden="true"
+                  className="
+                    transition-transform duration-200
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
+                />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* RIGHT: ENGINEERING PRINCIPLES */}
+          <Reveal>
+            <div>
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-dim">
+                What Matters to Us
+              </p>
+
+              <div className="border-t border-line/25">
+                {principles.map((principle) => (
+                  <article
+                    key={principle.number}
+                    className="
+                      grid grid-cols-[28px_1fr]
+                      gap-4 border-b
+                      border-line/25
+                      py-5
+                    "
+                  >
+                    <span className="pt-1 text-[11px] font-semibold text-accent-ink">
+                      {principle.number}
+                    </span>
+
+                    <div className="min-w-0">
+                      <h3
+                        className="
+                          text-[17px]
+                          font-semibold
+                          leading-[1.4]
+                          tracking-[-0.02em]
+                          text-txt
+                        "
+                      >
+                        {principle.title}
+                      </h3>
+
+                      <p className="mt-2 max-w-[420px] text-[14px] leading-[1.8] text-muted">
+                        {principle.description}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
-      <Reveal>
-        <div className="overflow-hidden mask-fade-x mt-14 group">
-          <div className="flex gap-5 w-max animate-marquee-slow group-hover:[animation-play-state:paused]">
-            {doubled.map((p, i) => (
-              <a
-                href="/about"
-                target="_blank"
-                rel="noopener noreferrer"
-                key={`${p.co}-${i}`}
-                className="bg-surface border border-line/10 rounded-card p-[26px] w-[300px] shrink-0"
-              >
-                <div className="font-bold mb-2">{p.co}</div>
-                <p className="text-[13.5px] text-muted">{p.desc}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </Reveal>
     </section>
   );
 }

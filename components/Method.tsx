@@ -1,51 +1,199 @@
+
 "use client";
 
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { useLanguage } from "@/lib/i18n/LanguageProvider";
+
+const services = [
+  {
+    title: "Generative AI & LLM Solutions",
+    description:
+      "We develop applications using large language models, retrieval-augmented generation (RAG), and conversational AI. These solutions help businesses work with documents, search internal knowledge, and access information more efficiently.",
+    capabilities:
+      "LLMs · RAG · Generative AI · AI Assistants",
+  },
+  {
+    title: "AI Agents & Automation",
+    description:
+      "We build AI agents that retrieve information, interact with connected tools, and support multi-step workflows with appropriate human oversight. We also develop automation for repetitive business processes.",
+    capabilities:
+      "Agentic AI · AI Agents · Workflow Automation",
+  },
+  {
+    title: "Custom Software Development",
+    description:
+      "We design and develop full-stack applications, internal tools, customer portals, and business software based on specific technical and operational requirements.",
+    capabilities:
+      "Full-Stack Development · APIs · Business Applications",
+  },
+  {
+    title: "Websites & Digital Platforms",
+    description:
+      "We create responsive business websites, e-commerce platforms, and web applications with an emphasis on usability, performance, and long-term maintainability.",
+    capabilities:
+      "Web Development · E-commerce · Web Applications",
+  },
+  {
+    title: "Machine Learning & Data",
+    description:
+      "We develop machine learning models and data-driven applications for forecasting, classification, and analyzing business information.",
+    capabilities:
+      "Machine Learning · Deep Learning · Data Processing",
+  },
+  {
+    title: "Systems & AI Integration",
+    description:
+      "We integrate applications, APIs, databases, and AI services to help businesses connect information and workflows across their existing systems.",
+    capabilities:
+      "API Integration · Vector Databases · Data Workflows",
+  },
+];
 
 export default function Method() {
-  const { t } = useLanguage();
-
   return (
-    <section id="method" className="pb-[110px] bg-surface/60">
-      <div className="max-w-[1400px] mx-auto px-6  py-20 rounded-card">
-        <div className="text-xs tracking-[0.22em] uppercase text-dim font-semibold mb-[18px]">
-          {t.method.eyebrow}
-        </div>
-        <h2 className="text-[clamp(30px,4.5vw,52px)] font-bold tracking-tight leading-[1.05]">
-          {t.method.title}
-        </h2>
-        <p className="text-muted text-[clamp(16px,1.6vw,19px)] max-w-[720px] mt-[22px]">
-          {t.method.description}
-        </p>
+    <section
+      id="method"
+      aria-labelledby="services-heading"
+      className="
+        scroll-mt-24
+        bg-surface/60
+        py-14 text-txt
+        sm:py-16
+        lg:py-20
+      "
+    >
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-8">
+        {/* SECTION INTRODUCTION */}
         <Reveal>
-          <div className="grid lg:grid-cols-[1fr_1.3fr] gap-[60px] mt-14 items-start">
-            <div className="bg-accent text-[#0a0a0a] rounded-card p-[38px] lg:sticky lg:top-[100px]">
-              <div className="text-[11px] tracking-[0.2em] uppercase font-bold opacity-60 mb-2.5">
-                {t.method.foundation}
-              </div>
-              <h3 className="text-3xl font-extrabold tracking-tight">
-                {t.method.brandStrategy}
-              </h3>
-              <p className="mt-3.5 text-[15px] opacity-75">
-                {t.method.brandDesc}
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-[700px]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-ink">
+                Our Services
+              </p>
+
+              <h2
+                id="services-heading"
+                className="
+                  mt-4
+                  text-[28px] font-semibold
+                  leading-[1.25]
+                  tracking-[-0.03em]
+                  text-txt
+                  sm:text-[32px]
+                "
+              >
+                What we do
+              </h2>
+
+              <p className="mt-3 max-w-[640px] text-[14px] leading-[1.8] text-muted">
+                We develop AI-powered applications, custom
+                software, and digital platforms based on
+                real business and technical requirements.
               </p>
             </div>
-            <div className="grid gap-3">
-              {t.derivations.map((d) => (
-                <div
-                  key={d}
-                  className="border border-line/10 rounded-[14px] px-6 py-5 font-semibold text-[17px] flex justify-between items-center bg-surface transition-all hover:border-accent-ink hover:pl-[30px]"
-                >
-                  {d}
-                  <span className="text-xs text-dim font-medium">
-                    {t.method.derivation}
-                  </span>
-                </div>
-              ))}
-            </div>
+
+            <Link
+              href="/connect"
+              className="
+                group inline-flex shrink-0
+                items-center gap-2
+                self-start border-b
+                border-accent-ink/40 pb-1
+                text-[13px] font-semibold
+                text-txt transition-colors
+                hover:text-accent-ink
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-accent
+              "
+            >
+              Discuss a Project
+
+              <ArrowUpRight
+                size={15}
+                aria-hidden="true"
+                className="
+                  transition-transform duration-200
+                  group-hover:translate-x-0.5
+                  group-hover:-translate-y-0.5
+                "
+              />
+            </Link>
           </div>
         </Reveal>
+
+        {/* SERVICES */}
+        <div
+          className="
+            mt-8 grid grid-cols-1
+            gap-x-12 border-t
+            border-line/25
+            md:grid-cols-2
+            lg:gap-x-16
+          "
+        >
+          {services.map((service, index) => (
+            <Reveal key={service.title}>
+              <article
+                className="
+                  flex h-full flex-col
+                  border-b border-line/25
+                  py-6 sm:py-7
+                "
+              >
+                <div className="flex items-start gap-4">
+                  <span
+                    className="
+                      min-w-[24px] pt-1
+                      text-[11px] font-semibold
+                      text-accent-ink
+                    "
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="min-w-0">
+                    <h3
+                      className="
+                        text-[17px]
+                        font-semibold
+                        leading-[1.4]
+                        tracking-[-0.02em]
+                        text-txt
+                      "
+                    >
+                      {service.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-2.5 max-w-[490px]
+                        text-[14px]
+                        leading-[1.8]
+                        text-muted
+                      "
+                    >
+                      {service.description}
+                    </p>
+
+                    <p
+                      className="
+                        mt-3
+                        text-[12px]
+                        font-medium
+                        leading-[1.7]
+                        text-dim
+                      "
+                    >
+                      {service.capabilities}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

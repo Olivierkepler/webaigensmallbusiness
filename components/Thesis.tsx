@@ -1,176 +1,152 @@
+
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { useLanguage } from "@/lib/i18n/LanguageProvider";
+
+const steps = [
+  {
+    number: "01",
+    title: "Discovery",
+    description:
+      "We discuss your goals, requirements, and existing systems to understand what needs to be built.",
+  },
+  {
+    number: "02",
+    title: "Planning & Architecture",
+    description:
+      "We outline the solution, define the technical approach, and establish the development priorities.",
+  },
+  {
+    number: "03",
+    title: "Development & Testing",
+    description:
+      "We develop the application, review functionality, test integrations, and refine the implementation.",
+  },
+  {
+    number: "04",
+    title: "Deployment & Support",
+    description:
+      "We prepare the software for launch, resolve issues, and discuss improvements as the project evolves.",
+  },
+];
 
 export default function Thesis() {
-  const { t } = useLanguage();
-
   return (
     <section
       id="thesis"
-      className="relative overflow-hidden bg-bg text-txt"
+      aria-labelledby="process-heading"
+      className="
+        scroll-mt-24 bg-bg
+        py-14 text-txt
+        sm:py-16 lg:py-20
+      "
     >
-      <div className="mx-auto grid min-h-[760px] max-w-[1800px] grid-cols-1 items-stretch lg:grid-cols-[54%_46%]">
-        {/* Content */}
-        <div className="flex items-center px-6 py-20 sm:px-12 lg:py-28 lg:pl-[clamp(3rem,8vw,10rem)] lg:pr-16">
-          <div className="w-full max-w-[760px]">
-            <Reveal>
-              <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">
-                {t.thesis.eyebrow}
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+          {/* LEFT: INTRODUCTION */}
+          <Reveal>
+            <div className="max-w-[420px]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-ink">
+                How We Work
               </p>
 
               <h2
+                id="process-heading"
                 className="
-                  max-w-[620px]
-                  text-[clamp(2rem,4vw,3.2rem)]
-                  font-extrabold
-                  leading-[1.05]
-                  tracking-[-0.045em]
+                  mt-4 text-[28px]
+                  font-semibold
+                  leading-[1.25]
+                  tracking-[-0.03em]
                   text-txt
+                  sm:text-[32px]
                 "
               >
-                {t.thesis.title}
+                From planning to launch.
               </h2>
 
-              <p
+              <p className="mt-3 max-w-[400px] text-[14px] leading-[1.8] text-muted">
+                Every project begins with understanding
+                your requirements. We then plan, develop,
+                test, and prepare the solution for
+                practical use.
+              </p>
+
+              <Link
+                href="/connect"
                 className="
-                  mt-7 max-w-[720px]
-                  text-[clamp(1rem,1.4vw,1.2rem)]
-                  leading-8
-                  text-muted
+                  group mt-6 inline-flex
+                  w-fit items-center gap-2
+                  border-b border-accent-ink/40
+                  pb-1 text-[13px]
+                  font-semibold text-txt
+                  transition-colors
+                  hover:border-accent-ink
+                  hover:text-accent-ink
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
                 "
               >
-                {t.thesis.description}
-              </p>
-            </Reveal>
+                Discuss a Project
 
-            <Reveal>
-              <div className="mt-10 space-y-7">
-                {t.research.map((item) => (
-                  <article
-                    key={item.src}
-                    className="
-                      group grid
-                      grid-cols-[auto_1fr]
-                      gap-5
-                      border-b border-line/20
-                      pb-7
-                    "
-                  >
-                    <div
+                <ArrowUpRight
+                  size={15}
+                  aria-hidden="true"
+                  className="
+                    transition-transform
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
+                />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* RIGHT: PROCESS STEPS */}
+          <div className="border-t border-line/25">
+            {steps.map((step) => (
+              <Reveal key={step.number}>
+                <article
+                  className="
+                    grid grid-cols-[30px_1fr]
+                    gap-4 border-b
+                    border-line/25
+                    py-5 sm:py-6
+                  "
+                >
+                  <span className="pt-1 text-[12px] font-semibold text-accent-ink">
+                    {step.number}
+                  </span>
+
+                  <div className="min-w-0">
+                    <h3
                       className="
-                        flex h-16 min-w-20 items-center justify-center
-                        rounded-2xl
-                        bg-txt
-                        px-4
-                        text-2xl font-black
-                        tracking-[-0.04em]
-                        text-bg
-                        transition duration-300
-                        group-hover:-translate-y-1
-                        group-hover:bg-accent
-                        group-hover:text-white
-                        motion-reduce:transform-none
+                        text-[17px]
+                        font-semibold
+                        leading-[1.4]
+                        tracking-[-0.02em]
+                        text-txt
                       "
                     >
-                      {item.big}
-                    </div>
+                      {step.title}
+                    </h3>
 
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <h3 className="text-lg font-bold tracking-tight text-txt">
-                          {item.title}
-                        </h3>
-
-                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-ink">
-                          {item.src}
-                        </span>
-                      </div>
-
-                      <p className="mt-2 max-w-[60ch] text-[15px] leading-6 text-muted">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Image */}
-        <div
-          className="
-            relative
-            min-h-[460px]
-            overflow-hidden
-            lg:min-h-[760px]
-          "
-          style={{
-            clipPath: "polygon(14% 0, 100% 0, 100% 100%, 0 100%)",
-          }}
-        >
-          <Image
-            src="/images/programer.png"
-            alt="WebAiGen digital strategy, web development, and AI services"
-            fill
-            priority={false}
-            className="
-              object-cover
-              object-center
-              transition duration-700
-              hover:scale-[1.02]
-              motion-reduce:transition-none
-              motion-reduce:hover:scale-100
-            "
-            sizes="(max-width: 1024px) 100vw, 46vw"
-          />
-
-          <div
-            aria-hidden="true"
-            className="
-              absolute inset-0
-              bg-gradient-to-r
-              from-bg/40
-              via-bg/5
-              to-transparent
-            "
-          />
-
-          <div
-            aria-hidden="true"
-            className="
-              absolute inset-0
-              bg-gradient-to-t
-              from-bg/50
-              via-transparent
-              to-transparent
-            "
-          />
-
-          <div className="absolute bottom-8 left-8 right-8 z-10 sm:bottom-12 sm:left-12">
-            <div
-              className="
-                max-w-md rounded-2xl
-                border border-line/20
-                bg-surface/80
-                p-5
-                text-txt
-                shadow-2xl
-                backdrop-blur-xl
-              "
-            >
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-dim">
-                WebAiGen Perspective
-              </p>
-
-              <p className="mt-2 text-lg font-semibold leading-7 text-txt">
-                Strategy, design, technology, and AI should work as one system—not
-                separate deliverables.
-              </p>
-            </div>
+                    <p
+                      className="
+                        mt-2 max-w-[490px]
+                        text-[14px]
+                        leading-[1.8]
+                        text-muted
+                      "
+                    >
+                      {step.description}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>

@@ -1,14 +1,59 @@
+
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 import "./globals.css";
 import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "WebAiGen — Brand, Web & AI Growth Partner",
+  metadataBase: new URL("https://webaigen.com"),
+
+  title: {
+    default: "WebAIgen | AI & Software Engineering",
+    template: "%s | WebAIgen",
+  },
+
   description:
-    "WebAiGen partners with startups, clinics, and local businesses on brand strategy, web engineering, and AI automation that drive revenue.",
+    "WebAIgen is a Boston-based AI and software engineering company building generative AI solutions, AI agents, intelligent automation, custom software, and modern web applications.",
+
+  applicationName: "WebAIgen",
+
+  keywords: [
+    "WebAIgen",
+    "AI Engineering",
+    "Software Engineering",
+    "Generative AI",
+    "Large Language Models",
+    "LLM Applications",
+    "AI Agents",
+    "AI Automation",
+    "Custom Software Development",
+    "Full-Stack Development",
+    "Machine Learning",
+    "Web Application Development",
+    "Boston AI Company",
+    "Boston Software Development",
+  ],
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://webaigen.com",
+    siteName: "WebAIgen",
+    title: "WebAIgen | AI & Software Engineering",
+    description:
+      "AI engineering, intelligent automation, and custom software solutions built for real business needs.",
+  },
+
+  twitter: {
+    card: "summary",
+    title: "WebAIgen | AI & Software Engineering",
+    description:
+      "AI engineering, intelligent automation, and custom software solutions built for real business needs.",
+  },
 
   icons: {
     icon: [
@@ -25,26 +70,35 @@ export const metadata: Metadata = {
     shortcut: "/images/favicon_black_multi.ico",
     apple: "/images/favicon_32_black.png",
   },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const themeInit = `
 try {
-  const t = localStorage.getItem("theme");
+  const savedTheme = localStorage.getItem("theme");
+
   document.documentElement.setAttribute(
     "data-theme",
-    t === "light" ? "light" : "dark"
+    savedTheme === "light" ? "light" : "dark"
   );
 } catch (_) {
-  document.documentElement.setAttribute("data-theme", "dark");
+  document.documentElement.setAttribute(
+    "data-theme",
+    "dark"
+  );
 }
 `;
 
 const localeInit = `
 try {
-  const l = localStorage.getItem("locale");
+  const savedLocale = localStorage.getItem("locale");
 
-  if (l === "fr" || l === "es") {
-    document.documentElement.lang = l;
+  if (savedLocale === "fr" || savedLocale === "es") {
+    document.documentElement.lang = savedLocale;
   }
 } catch (_) {}
 `;
@@ -55,18 +109,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+    >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-        <script dangerouslySetInnerHTML={{ __html: localeInit }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeInit,
+          }}
+        />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: localeInit,
+          }}
+        />
       </head>
 
-      <body className="bg-bg text-txt antialiased overflow-x-hidden font-sans">
-        <Providers>
-      
-
-          <main>{children}</main>
-        </Providers>
+      <body className="min-h-screen overflow-x-hidden bg-bg font-sans text-txt antialiased">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

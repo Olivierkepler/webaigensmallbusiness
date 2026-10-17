@@ -1,26 +1,40 @@
+
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import {
+  ArrowUpRight,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
+
 import NodeALogo from "./logo";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
+
+const companyLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Work", href: "/#work" },
+  { label: "Contact", href: "/connect" },
+];
+
+const exploreLinks = [
+  { label: "Our Services", href: "/#method" },
+  { label: "Development Process", href: "/#thesis" },
+  { label: "Selected Projects", href: "/#work" },
+  { label: "FAQs", href: "/#faq" },
+];
+
+const services = [
+  "AI Applications & Agents",
+  "Business Process Automation",
+  "Custom Software Development",
+  "Websites & Digital Platforms",
+];
 
 export default function Footer() {
   const { t } = useLanguage();
-
-  const columns = [
-    {
-      title: t.footer.goTo,
-      items: t.footer.goToItems,
-    },
-    {
-      title: t.footer.services,
-      items: t.footer.serviceItems,
-    },
-    {
-      title: t.footer.industries,
-      items: t.footer.industryItems,
-    },
-  ];
 
   return (
     <footer
@@ -28,174 +42,354 @@ export default function Footer() {
       className="
         relative overflow-hidden
         border-t border-white/10
-        bg-[#003334]
-        pb-8 pt-20
-        text-white
-        sm:pb-10 sm:pt-[90px]
+        bg-[#003334] text-white
+        pt-12 pb-6
+        sm:pt-14 sm:pb-7
+        lg:pt-16
       "
     >
-      {/* Decorative background */}
+      {/* Subtle background accent */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
       >
-        <div className="absolute -left-32 -top-20 h-[520px] w-[520px] rounded-full bg-[#0E6A63]/40 blur-[140px]" />
-
-        <div className="absolute -bottom-24 right-[8%] h-[240px] w-[240px] rounded-full bg-orange-500/10 blur-[90px]" />
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_25%,rgba(169,255,235,0.16),transparent_30%),linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.07)_50%,transparent_80%)]" />
+        <div
+          className="
+            absolute -left-32 -top-32
+            h-[300px] w-[300px]
+            rounded-full
+            bg-[#0E6A63]/15
+            blur-[100px]
+          "
+        />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-6">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-14">
-          {/* Brand + contact */}
-          <div className="max-w-md">
+      <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-8">
+        {/* MAIN FOOTER */}
+        <div
+          className="
+            grid gap-x-8 gap-y-9
+            sm:grid-cols-2
+            lg:grid-cols-[1.6fr_0.8fr_0.9fr_1fr]
+            lg:gap-8
+          "
+        >
+          {/* COMPANY INFORMATION */}
+          <div className="max-w-[340px]">
             <Link
               href="/"
               aria-label={t.nav.logoAlt}
               className="
-                group inline-flex items-center gap-3
-                rounded-2xl
+                inline-flex items-center gap-3
+                rounded-md
                 focus-visible:outline-none
                 focus-visible:ring-2
                 focus-visible:ring-[#FAAA32]
-                focus-visible:ring-offset-4
-                focus-visible:ring-offset-[#003334]
               "
             >
-              <span className="relative grid h-12 w-12 shrink-0 place-items-center">
-                <span className="absolute inset-0 rounded-full bg-[#FAAA32]/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
+              <NodeALogo size={36} />
 
-                <span className="relative">
-                  <NodeALogo size={44} />
-                </span>
-              </span>
-
-              <span className="flex flex-col">
-                <span className="text-[24px] font-black italic leading-none tracking-tight">
+              <span className="flex flex-col gap-1">
+                <span
+                  className="
+                    text-[21px]
+                    font-bold leading-none
+                    tracking-[-0.035em]
+                  "
+                >
                   Web
-                  <span className="text-[#FAAA32]">Ai</span>
-                  Gen
+                  <span className="text-[#FAAA32]">
+                    AI
+                  </span>
+                  gen
                 </span>
 
-                <span className="mt-1 text-[13px] font-medium tracking-[0.02em] text-white/55">
-                  AI Agentic Platform
+                <span
+                  className="
+                    text-[9px]
+                    font-medium uppercase
+                    tracking-[0.08em]
+                    text-white/65
+                  "
+                >
+                  AI & Software Engineering
                 </span>
               </span>
             </Link>
 
-            <h3 className="mt-8 text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl">
-              {t.footer.heading}
-            </h3>
+            <p
+              className="
+                mt-5 max-w-[320px]
+                text-[13px]
+                leading-[1.8]
+                text-white/70
+              "
+            >
+              WebAIgen develops custom software,
+              AI-powered applications, and practical
+              automation solutions for businesses.
+            </p>
 
-            <div className="mt-5 space-y-4">
-              <p className="text-[14.5px] leading-relaxed text-white/70">
-                {t.footer.question}
-                <br />
+            {/* CONTACT DETAILS */}
+            <div className="mt-5 space-y-3">
+              <a
+                href="mailto:webaigen3@gmail.com"
+                className="
+                  flex items-center gap-2.5
+                  text-[13px]
+                  text-white/80
+                  transition-colors
+                  hover:text-[#FAAA32]
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-[#FAAA32]
+                "
+              >
+                <Mail
+                  size={15}
+                  aria-hidden="true"
+                  className="shrink-0 text-[#FAAA32]"
+                />
 
-                <a
-                  href="mailto:webaigen3@gmail.com"
-                  className="
-                    inline-block
-                    border-b border-white/30
-                    text-white
-                    transition-colors duration-200
-                    hover:border-[#FAAA32]
-                    hover:text-[#FAAA32]
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-[#FAAA32]
-                    focus-visible:ring-offset-2
-                    focus-visible:ring-offset-[#003334]
-                  "
-                >
+                <span className="break-all">
                   webaigen3@gmail.com
-                </a>
-              </p>
+                </span>
+              </a>
 
-              <p className="text-[14.5px] leading-relaxed text-white/70">
-                {t.footer.speak}
-                <br />
+              <a
+                href="tel:+16173808053"
+                className="
+                  flex items-center gap-2.5
+                  text-[13px]
+                  text-white/80
+                  transition-colors
+                  hover:text-[#FAAA32]
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-[#FAAA32]
+                "
+              >
+                <Phone
+                  size={15}
+                  aria-hidden="true"
+                  className="shrink-0 text-[#FAAA32]"
+                />
 
-                <a
-                  href="tel:+16173808053"
-                  className="
-                    inline-block
-                    border-b border-white/30
-                    text-white
-                    transition-colors duration-200
-                    hover:border-[#FAAA32]
-                    hover:text-[#FAAA32]
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-[#FAAA32]
-                    focus-visible:ring-offset-2
-                    focus-visible:ring-offset-[#003334]
-                  "
-                >
-                  +1 617 380 8053
-                </a>
-              </p>
+                <span>+1 617 380 8053</span>
+              </a>
+
+              <div
+                className="
+                  flex items-center gap-2.5
+                  text-[13px]
+                  text-white/70
+                "
+              >
+                <MapPin
+                  size={15}
+                  aria-hidden="true"
+                  className="shrink-0 text-[#FAAA32]"
+                />
+
+                <span>Boston, Massachusetts</span>
+              </div>
             </div>
           </div>
 
-          {/* Navigation columns */}
-          {columns.map((column) => (
-            <nav
-              key={column.title}
-              aria-label={column.title}
+          {/* COMPANY LINKS */}
+          <nav aria-label="Company links">
+            <h2
+              className="
+                mb-4 text-[11px]
+                font-semibold uppercase
+                tracking-[0.14em]
+                text-white/55
+              "
             >
-              <h4 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
-                {column.title}
-              </h4>
+              Company
+            </h2>
 
-              <ul className="grid gap-3 text-[14.5px] text-white/70">
-                {column.items.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="
-                        inline-flex rounded-sm
-                        transition-colors duration-200
-                        hover:text-[#FAAA32]
-                        focus-visible:outline-none
-                        focus-visible:ring-2
-                        focus-visible:ring-[#FAAA32]
-                        focus-visible:ring-offset-2
-                        focus-visible:ring-offset-[#003334]
-                      "
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+            <ul className="space-y-2.5">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="
+                      text-[13px]
+                      leading-[1.7]
+                      text-white/75
+                      transition-colors
+                      hover:text-[#FAAA32]
+                    "
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* EXPLORE LINKS */}
+          <nav aria-label="Explore WebAIgen">
+            <h2
+              className="
+                mb-4 text-[11px]
+                font-semibold uppercase
+                tracking-[0.14em]
+                text-white/55
+              "
+            >
+              Explore
+            </h2>
+
+            <ul className="space-y-2.5">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="
+                      text-[13px]
+                      leading-[1.7]
+                      text-white/75
+                      transition-colors
+                      hover:text-[#FAAA32]
+                    "
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* SERVICES */}
+          <nav aria-label="Services">
+            <h2
+              className="
+                mb-4 text-[11px]
+                font-semibold uppercase
+                tracking-[0.14em]
+                text-white/55
+              "
+            >
+              Services
+            </h2>
+
+            <ul className="space-y-2.5">
+              {services.map((service) => (
+                <li key={service}>
+                  <Link
+                    href="/#method"
+                    className="
+                      text-[13px]
+                      leading-[1.7]
+                      text-white/75
+                      transition-colors
+                      hover:text-[#FAAA32]
+                    "
+                  >
+                    {service}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        {/* Offices */}
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-[70px] sm:pt-10">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {t.footer.offices.map((office) => (
-              <div
-                key={office.city}
-                className="text-[13px] leading-relaxed text-white/50"
-              >
-                <strong className="mb-1 block text-sm font-semibold text-white/80">
-                  {office.city}
-                </strong>
+        {/* CONTACT CALL TO ACTION */}
+        <div
+          className="
+            mt-10 flex flex-col gap-4
+            border-t border-white/10
+            pt-7
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+            lg:mt-12
+          "
+        >
+          <div>
+            <h2
+              className="
+                text-[17px]
+                font-semibold
+                tracking-[-0.02em]
+                text-white
+              "
+            >
+              Have a project in mind?
+            </h2>
 
-                <span>{office.addr}</span>
-              </div>
-            ))}
+            <p
+              className="
+                mt-1 text-[13px]
+                leading-[1.7]
+                text-white/65
+              "
+            >
+              
+Tell us what you&apos;re building or looking
+to improve.
+
+            </p>
           </div>
+
+          <Link
+            href="/connect"
+            className="
+              group inline-flex min-h-11
+              shrink-0 items-center
+              justify-center gap-2
+              self-start rounded-full
+              bg-[#FAAA32]
+              px-5 py-2.5
+              text-[13px]
+              font-semibold
+              text-[#0a0a0a]
+              transition-all
+              hover:-translate-y-0.5
+              hover:shadow-md
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-white
+              motion-reduce:transform-none
+            "
+          >
+            Discuss a Project
+
+            <ArrowUpRight
+              size={15}
+              aria-hidden="true"
+              className="
+                transition-transform
+                group-hover:translate-x-0.5
+                group-hover:-translate-y-0.5
+              "
+            />
+          </Link>
         </div>
 
-        {/* Bottom row */}
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-[12.5px] text-white/45 sm:mt-[50px] sm:flex-row sm:items-center sm:justify-between">
-          <div>{t.footer.copyright}</div>
-          <div>{t.footer.tagline}</div>
+        {/* BOTTOM ROW */}
+        <div
+          className="
+            mt-7 flex flex-col gap-2.5
+            border-t border-white/10
+            pt-5
+            text-[11px]
+            text-white/50
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          "
+        >
+          <span>
+            © {new Date().getFullYear()} WebAIgen.
+            All rights reserved.
+          </span>
+
+          <span>
+            AI & Software Engineering
+          </span>
         </div>
       </div>
     </footer>
